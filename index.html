@@ -33,7 +33,7 @@
         .left-column {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             flex: 1;
             min-width: 0;
         }
@@ -51,7 +51,6 @@
 
         #canvas {
             border-radius: 8px;
-            cursor: crosshair;
             background: #0a101f;
         }
 
@@ -67,30 +66,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .chart-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #cbd5e1;
         }
 
         .chart-legend {
             display: flex;
-            gap: 14px;
-            font-size: 11px;
+            gap: 12px;
+            font-size: 10px;
         }
 
         .chart-legend span {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
 
         .legend-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
         }
 
@@ -117,15 +116,81 @@
             height: auto;
         }
 
+        .timeline-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0 2px 0;
+        }
+
+        .timeline-info {
+            font-size: 10px;
+            color: #64748b;
+            font-family: monospace;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        .timeline-info .live {
+            color: #34d399;
+        }
+
+        .timeline-info .historic {
+            color: #f59e0b;
+        }
+
+        .timeline-slider {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: #334155;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+        }
+
+        .timeline-btn {
+            padding: 3px 7px;
+            font-size: 11px;
+            border-radius: 4px;
+            background: #334155;
+            color: #cbd5e1;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .timeline-btn:hover {
+            background: #475569;
+        }
+
+        .timeline-btn.resume {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .timeline-btn.resume:hover {
+            background: #2563eb;
+        }
+
         .control-panel {
-            width: 370px;
+            width: 380px;
             background: #1e293b;
             border-radius: 14px;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             padding: 20px;
             flex-shrink: 0;
         }
@@ -148,7 +213,7 @@
 
         .section {
             border-top: 1px solid #334155;
-            padding-top: 16px;
+            padding-top: 14px;
         }
 
         .section:first-child {
@@ -157,10 +222,10 @@
         }
 
         .section-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #94a3b8;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -168,12 +233,12 @@
         .preset-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
         }
 
         .preset-btn {
-            padding: 8px 10px;
-            font-size: 12px;
+            padding: 7px 9px;
+            font-size: 11px;
             font-weight: 500;
             background: #334155;
             border: 1px solid transparent;
@@ -195,20 +260,20 @@
         .atom-types {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
         }
 
         .atom-type-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 7px 10px;
+            gap: 7px;
+            padding: 6px 9px;
             background: #334155;
             border: 2px solid transparent;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .atom-type-btn:hover {
@@ -221,14 +286,14 @@
         }
 
         .atom-preview {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             flex-shrink: 0;
         }
 
         .control-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .control-group:last-child {
@@ -239,8 +304,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 5px;
-            font-size: 12px;
+            margin-bottom: 4px;
+            font-size: 11px;
             color: #cbd5e1;
         }
 
@@ -248,7 +313,7 @@
             font-weight: 600;
             color: #60a5fa;
             font-family: monospace;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         input[type="range"] {
@@ -262,8 +327,8 @@
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
             background: #60a5fa;
             cursor: pointer;
@@ -277,16 +342,20 @@
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 7px;
         }
 
         .button-group.full {
             grid-template-columns: 1fr;
         }
 
+        .button-group.triple {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
         button {
-            padding: 9px 14px;
-            font-size: 13px;
+            padding: 8px 12px;
+            font-size: 12px;
             font-weight: 500;
             border: none;
             border-radius: 7px;
@@ -342,19 +411,37 @@
             box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
         }
 
+        .mode-indicator {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .mode-indicator.heat {
+            background: #f59e0b33;
+            color: #f59e0b;
+        }
+
+        .mode-indicator.region {
+            background: #10b98133;
+            color: #10b981;
+        }
+
         .energy-display {
             background: #0f172a;
             border-radius: 8px;
-            padding: 12px;
+            padding: 10px;
             display: grid;
-            gap: 8px;
+            gap: 6px;
         }
 
         .energy-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .energy-label {
@@ -381,23 +468,23 @@
         .heat-source-item {
             background: #0f172a;
             border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 8px;
+            padding: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-size: 11px;
         }
 
         .heat-source-item input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
             accent-color: #f59e0b;
         }
 
         .heat-source-item .hs-label {
             flex: 1;
-            font-size: 11px;
+            font-size: 10px;
             color: #cbd5e1;
         }
 
@@ -407,23 +494,23 @@
             border: 1px solid #334155;
             border-radius: 4px;
             color: #f1f5f9;
-            padding: 3px 6px;
-            font-size: 11px;
+            padding: 2px 5px;
+            font-size: 10px;
             font-family: monospace;
             text-align: center;
         }
 
         .heat-source-item .hs-power {
-            width: 50px;
+            width: 46px;
         }
 
         .heat-source-item .hs-radius {
-            width: 44px;
+            width: 40px;
         }
 
         .btn-small {
-            padding: 4px 8px;
-            font-size: 11px;
+            padding: 3px 7px;
+            font-size: 10px;
             border-radius: 5px;
             background: #475569;
             color: white;
@@ -447,11 +534,11 @@
         .file-label {
             display: block;
             text-align: center;
-            padding: 9px 14px;
+            padding: 8px 12px;
             background: #475569;
             border-radius: 7px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             transition: all 0.2s;
         }
@@ -463,22 +550,22 @@
         .inspector-panel {
             background: #0f172a;
             border-radius: 8px;
-            padding: 12px;
+            padding: 10px;
         }
 
         .inspector-none {
             color: #64748b;
-            font-size: 11px;
+            font-size: 10px;
             text-align: center;
-            padding: 8px;
+            padding: 6px;
         }
 
         .inspector-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
-            font-size: 11px;
+            margin-bottom: 5px;
+            font-size: 10px;
         }
 
         .inspector-row .label {
@@ -490,87 +577,196 @@
             font-family: monospace;
         }
 
-        .inspector-edit {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
         .inspector-edit input {
-            width: 58px;
+            width: 54px;
             background: #1e293b;
             border: 1px solid #334155;
             border-radius: 4px;
             color: #f1f5f9;
-            padding: 3px 6px;
-            font-size: 11px;
+            padding: 2px 5px;
+            font-size: 10px;
             font-family: monospace;
             text-align: right;
         }
 
         .inspector-actions {
             display: flex;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 6px;
         }
 
         .obs-toggle {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 6px 0;
-            font-size: 11px;
+            padding: 4px 0;
+            font-size: 10px;
             color: #cbd5e1;
             cursor: pointer;
         }
 
         .obs-toggle input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
+            width: 14px;
+            height: 14px;
             accent-color: #60a5fa;
         }
 
         .custom-preset-item {
             background: #0f172a;
             border-radius: 7px;
-            padding: 8px 10px;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
+            padding: 8px;
+            margin-bottom: 5px;
+            font-size: 10px;
         }
 
-        .custom-preset-item .cp-name {
+        .cp-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .cp-name {
             flex: 1;
             color: #cbd5e1;
+            font-weight: 500;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
-        .custom-preset-item .cp-info {
+        .cp-group-tag {
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 500;
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        .cp-meta {
+            display: flex;
+            gap: 10px;
             color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .cp-note {
+            color: #475569;
+            font-size: 9px;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .cp-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .preset-filter {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .preset-filter select {
+            flex: 1;
+            background: #334155;
+            border: 1px solid #475569;
+            border-radius: 5px;
+            color: #cbd5e1;
+            padding: 4px 6px;
             font-size: 10px;
+            font-family: inherit;
+        }
+
+        .preset-dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preset-dialog-overlay.show {
+            display: flex;
+        }
+
+        .preset-dialog {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            width: 360px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .preset-dialog h3 {
+            font-size: 16px;
+            margin-bottom: 14px;
+            color: #f1f5f9;
+        }
+
+        .preset-dialog .field {
+            margin-bottom: 10px;
+        }
+
+        .preset-dialog label {
+            display: block;
+            font-size: 10px;
+            color: #94a3b8;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .preset-dialog input,
+        .preset-dialog select,
+        .preset-dialog textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #f1f5f9;
+            padding: 6px 8px;
+            font-size: 12px;
+            font-family: inherit;
+        }
+
+        .preset-dialog textarea {
+            height: 50px;
+            resize: vertical;
+        }
+
+        .preset-dialog .dialog-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 12px;
         }
 
         .instructions {
-            font-size: 11px;
-            line-height: 1.6;
+            font-size: 10px;
+            line-height: 1.5;
             color: #64748b;
         }
 
         .instructions ul {
-            margin-top: 6px;
+            margin-top: 5px;
             padding-left: 14px;
         }
 
         .instructions li {
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
 
         ::-webkit-scrollbar-track {
@@ -614,7 +810,14 @@
                         <span><span class="legend-dot temp"></span>温度</span>
                     </div>
                 </div>
-                <canvas id="chartCanvas" width="800" height="140"></canvas>
+                <canvas id="chartCanvas" width="800" height="120"></canvas>
+                <div class="timeline-container">
+                    <span class="timeline-info" id="timelineInfo"><span class="live">● 实时</span> Step 0</span>
+                    <button class="timeline-btn" id="btnTimelinePrev" title="上一个快照">◀</button>
+                    <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="0" value="0" disabled>
+                    <button class="timeline-btn" id="btnTimelineNext" title="下一个快照">▶</button>
+                    <button class="timeline-btn resume" id="btnTimelineResume" style="display:none">返回实时</button>
+                </div>
             </div>
         </div>
         <div class="control-panel">
@@ -633,11 +836,18 @@
 
             <div class="section">
                 <div class="section-title">自定义预设</div>
-                <div class="button-group full" style="margin-bottom: 8px;">
-                    <button id="btnSavePreset" class="btn-secondary">💾 保存当前为预设</button>
+                <div class="preset-filter">
+                    <select id="presetGroupFilter">
+                        <option value="all">全部</option>
+                        <option value="默认">默认</option>
+                        <option value="教学演示">教学演示</option>
+                        <option value="测试场景">测试场景</option>
+                        <option value="对比实验">对比实验</option>
+                    </select>
+                    <button class="btn-small green" id="btnSavePreset">💾 保存</button>
                 </div>
                 <div id="customPresetList">
-                    <div style="font-size: 11px; color: #64748b; text-align: center; padding: 6px;">暂无自定义预设</div>
+                    <div style="font-size:10px;color:#64748b;text-align:center;padding:4px;">暂无自定义预设</div>
                 </div>
             </div>
 
@@ -652,8 +862,10 @@
                     <button id="btnPlay" class="btn-primary">▶ 运行</button>
                     <button id="btnStep" class="btn-secondary">⏭ 单步</button>
                 </div>
-                <div class="button-group full" style="margin-top: 8px;">
-                    <button id="btnClear" class="btn-danger">🗑 清除所有</button>
+                <div class="button-group triple" style="margin-top: 7px;">
+                    <button id="btnClear" class="btn-danger">🗑 清除</button>
+                    <button id="btnHeatMode" class="btn-accent">🔥 热源</button>
+                    <button id="btnRegionMode" class="btn-accent">📏 框选</button>
                 </div>
             </div>
 
@@ -665,78 +877,47 @@
             </div>
 
             <div class="section">
+                <div class="section-title">区域统计 <span id="regionModeLabel" style="color:#64748b;">(未激活)</span></div>
+                <div class="inspector-panel" id="regionStats">
+                    <div class="inspector-none">开启框选模式后在画布上拖拽选区</div>
+                </div>
+            </div>
+
+            <div class="section">
                 <div class="section-title">观察层</div>
-                <label class="obs-toggle">
-                    <span>速度箭头</span>
-                    <input type="checkbox" id="obsVelocity" checked>
-                </label>
-                <label class="obs-toggle">
-                    <span>受力箭头</span>
-                    <input type="checkbox" id="obsForce">
-                </label>
-                <label class="obs-toggle">
-                    <span>温度热力图</span>
-                    <input type="checkbox" id="obsHeatmap">
-                </label>
-                <label class="obs-toggle">
-                    <span>热源覆盖范围</span>
-                    <input type="checkbox" id="obsHSCover" checked>
-                </label>
+                <label class="obs-toggle"><span>速度箭头</span><input type="checkbox" id="obsVelocity" checked></label>
+                <label class="obs-toggle"><span>受力箭头</span><input type="checkbox" id="obsForce"></label>
+                <label class="obs-toggle"><span>温度热力图</span><input type="checkbox" id="obsHeatmap"></label>
+                <label class="obs-toggle"><span>热源覆盖范围</span><input type="checkbox" id="obsHSCover" checked></label>
             </div>
 
             <div class="section">
                 <div class="section-title">参数调节</div>
                 <div class="control-group">
-                    <div class="control-label">
-                        <span>温度</span>
-                        <span class="control-value"><span id="tempValue">1.00</span></span>
-                    </div>
+                    <div class="control-label"><span>温度</span><span class="control-value"><span id="tempValue">1.00</span></span></div>
                     <input type="range" id="temperature" min="0" max="500" step="0.1" value="100">
                 </div>
                 <div class="control-group">
-                    <div class="control-label">
-                        <span>摩擦力</span>
-                        <span class="control-value"><span id="frictionValue">0.000</span></span>
-                    </div>
+                    <div class="control-label"><span>摩擦力</span><span class="control-value"><span id="frictionValue">0.000</span></span></div>
                     <input type="range" id="friction" min="0" max="50" step="0.001" value="0">
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-title">热源管理</div>
-                <div class="button-group full" style="margin-bottom: 8px;">
-                    <button id="btnHeatMode" class="btn-accent">🔥 热源模式：关</button>
-                </div>
                 <div id="heatSourceList">
-                    <div style="font-size: 11px; color: #64748b; text-align: center; padding: 8px;">
-                        点击热源模式后再点击画布添加
-                    </div>
+                    <div style="font-size:10px;color:#64748b;text-align:center;padding:6px;">点击热源按钮，再点击画布添加</div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-title">能量统计</div>
                 <div class="energy-display">
-                    <div class="energy-row">
-                        <span class="energy-label">动能 (E<sub>k</sub>):</span>
-                        <span class="energy-value kinetic" id="kineticEnergy">0.000</span>
-                    </div>
-                    <div class="energy-row">
-                        <span class="energy-label">势能 (E<sub>p</sub>):</span>
-                        <span class="energy-value potential" id="potentialEnergy">0.000</span>
-                    </div>
-                    <div class="energy-row" style="border-top: 1px solid #334155; padding-top: 6px; margin-top: 2px;">
-                        <span class="energy-label">总能量 (E):</span>
-                        <span class="energy-value total" id="totalEnergy">0.000</span>
-                    </div>
-                    <div class="energy-row">
-                        <span class="energy-label">温度:</span>
-                        <span class="energy-value" style="color: #f472b6;" id="currentTemp">0.000</span>
-                    </div>
-                    <div class="energy-row">
-                        <span class="energy-label">原子数:</span>
-                        <span class="energy-value" style="color: #94a3b8;" id="atomCount">0</span>
-                    </div>
+                    <div class="energy-row"><span class="energy-label">动能 (E<sub>k</sub>):</span><span class="energy-value kinetic" id="kineticEnergy">0.000</span></div>
+                    <div class="energy-row"><span class="energy-label">势能 (E<sub>p</sub>):</span><span class="energy-value potential" id="potentialEnergy">0.000</span></div>
+                    <div class="energy-row" style="border-top:1px solid #334155;padding-top:5px;margin-top:2px;"><span class="energy-label">总能量 (E):</span><span class="energy-value total" id="totalEnergy">0.000</span></div>
+                    <div class="energy-row"><span class="energy-label">温度:</span><span class="energy-value" style="color:#f472b6;" id="currentTemp">0.000</span></div>
+                    <div class="energy-row"><span class="energy-label">原子数:</span><span class="energy-value" style="color:#94a3b8;" id="atomCount">0</span></div>
                 </div>
             </div>
 
@@ -754,13 +935,40 @@
                 <div class="instructions">
                     <ul>
                         <li>点击画布放置原子 | 拖拽设置速度</li>
-                        <li>热源模式：点击画布放置热源</li>
-                        <li>热源可拖拽移动，调整大小/强度</li>
-                        <li>暂停后点击原子查看/编辑粒子</li>
-                        <li>观察层可叠加箭头、热力图</li>
-                        <li>温度调节逐步缩放所有速度</li>
+                        <li>热源模式：点击画布放置/拖拽热源</li>
+                        <li>框选模式：拖拽选区查看区域统计</li>
+                        <li>暂停后可点击原子检查/编辑</li>
+                        <li>时间轴滑块回放历史状态</li>
+                        <li>观察层叠加箭头、热力图</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="preset-dialog-overlay" id="presetDialog">
+        <div class="preset-dialog">
+            <h3>保存自定义预设</h3>
+            <div class="field">
+                <label>预设名称</label>
+                <input type="text" id="presetName" placeholder="输入名称...">
+            </div>
+            <div class="field">
+                <label>分组</label>
+                <select id="presetGroup">
+                    <option value="默认">默认</option>
+                    <option value="教学演示">教学演示</option>
+                    <option value="测试场景">测试场景</option>
+                    <option value="对比实验">对比实验</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>备注</label>
+                <textarea id="presetNote" placeholder="可选备注..."></textarea>
+            </div>
+            <div class="dialog-actions">
+                <button class="btn-secondary" id="btnDialogCancel">取消</button>
+                <button class="btn-primary" id="btnDialogConfirm">保存</button>
             </div>
         </div>
     </div>
@@ -799,6 +1007,8 @@
 
         let heatSources = [];
         let heatMode = false;
+        let regionMode = false;
+
         let isDragging = false;
         let dragStart = null;
         let dragCurrent = null;
@@ -826,6 +1036,21 @@
             hsCover: true,
         };
 
+        const MAX_SNAPSHOTS = 200;
+        const SNAPSHOT_INTERVAL = 10;
+        let snapshots = [];
+        let viewingSnapshotIdx = -1;
+        let nextSnapshotAt = SNAPSHOT_INTERVAL;
+        let savedForSnapshot = null;
+
+        let regionRect = null;
+
+        let presetGroups = ['默认', '教学演示', '测试场景', '对比实验'];
+
+        function deepCopyAtoms(a) { return a.map(atom => ({ ...atom })); }
+
+        function deepCopyHS(hs) { return hs.map(h => ({ ...h })); }
+
         function initUI() {
             const container = document.getElementById('atomTypes');
             atomTypes.forEach((type, idx) => {
@@ -844,8 +1069,9 @@
                 btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
             });
 
-            document.getElementById('btnPlay').addEventListener('click', togglePlay);
-            document.getElementById('btnStep').addEventListener('click', () => { if (!running) step(); });
+            const playBtn = document.getElementById('btnPlay');
+            playBtn.addEventListener('click', togglePlay);
+            document.getElementById('btnStep').addEventListener('click', () => { if (!running && viewingSnapshotIdx < 0) step(); });
             document.getElementById('btnClear').addEventListener('click', clearAll);
 
             document.getElementById('temperature').addEventListener('input', (e) => {
@@ -857,67 +1083,97 @@
                 document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
             });
 
-            document.getElementById('btnHeatMode').addEventListener('click', toggleHeatMode);
+            setupModeButtons();
             document.getElementById('btnSave').addEventListener('click', saveState);
             document.getElementById('fileLoad').addEventListener('change', loadState);
-            document.getElementById('btnSavePreset').addEventListener('click', saveCustomPreset);
 
-            document.getElementById('obsVelocity').addEventListener('change', (e) => {
-                obsLayers.velocity = e.target.checked;
-                render();
+            document.getElementById('btnSavePreset').addEventListener('click', () => {
+                document.getElementById('presetDialog').classList.add('show');
             });
-            document.getElementById('obsForce').addEventListener('change', (e) => {
-                obsLayers.force = e.target.checked;
-                render();
+            document.getElementById('btnDialogCancel').addEventListener('click', () => {
+                document.getElementById('presetDialog').classList.remove('show');
             });
-            document.getElementById('obsHeatmap').addEventListener('change', (e) => {
-                obsLayers.heatmap = e.target.checked;
-                render();
+            document.getElementById('btnDialogConfirm').addEventListener('click', doSaveCustomPreset);
+            document.getElementById('presetGroupFilter').addEventListener('change', refreshCustomPresetUI);
+
+            document.getElementById('obsVelocity').addEventListener('change', (e) => { obsLayers.velocity = e.target.checked;
+                recomputeObservables(); render(); });
+            document.getElementById('obsForce').addEventListener('change', (e) => { obsLayers.force = e.target.checked;
+                recomputeObservables(); render(); });
+            document.getElementById('obsHeatmap').addEventListener('change', (e) => { obsLayers.heatmap = e.target.checked;
+                recomputeObservables(); render(); });
+            document.getElementById('obsHSCover').addEventListener('change', (e) => { obsLayers.hsCover = e.target.checked;
+                render(); });
+
+            const timelineSlider = document.getElementById('timelineSlider');
+            timelineSlider.addEventListener('input', () => {
+                const idx = parseInt(timelineSlider.value);
+                if (idx !== viewingSnapshotIdx) goToSnapshot(idx);
             });
-            document.getElementById('obsHSCover').addEventListener('change', (e) => {
-                obsLayers.hsCover = e.target.checked;
-                render();
+            document.getElementById('btnTimelinePrev').addEventListener('click', () => {
+                if (viewingSnapshotIdx > 0) goToSnapshot(viewingSnapshotIdx - 1);
             });
+            document.getElementById('btnTimelineNext').addEventListener('click', () => {
+                if (viewingSnapshotIdx < snapshots.length - 1) goToSnapshot(viewingSnapshotIdx + 1);
+            });
+            document.getElementById('btnTimelineResume').addEventListener('click', resumeFromHistory);
 
             refreshCustomPresetUI();
+            updateTimelineUI();
         }
 
-        function toggleHeatMode() {
-            heatMode = !heatMode;
-            const btn = document.getElementById('btnHeatMode');
-            if (heatMode) {
-                btn.textContent = '🔥 热源模式：开';
-                btn.classList.add('active');
-                canvas.style.cursor = 'cell';
-            } else {
-                btn.textContent = '🔥 热源模式：关';
-                btn.classList.remove('active');
-                canvas.style.cursor = 'crosshair';
-            }
+        function setupModeButtons() {
+            document.getElementById('btnHeatMode').addEventListener('click', () => {
+                heatMode = !heatMode;
+                if (heatMode && regionMode) regionMode = false;
+                updateModeButtonStyles();
+            });
+            document.getElementById('btnRegionMode').addEventListener('click', () => {
+                regionMode = !regionMode;
+                if (regionMode && heatMode) heatMode = false;
+                updateModeButtonStyles();
+                if (!regionMode) { regionRect = null;
+                    updateRegionStats();
+                    render(); }
+            });
+        }
+
+        function updateModeButtonStyles() {
+            const btnH = document.getElementById('btnHeatMode');
+            const btnR = document.getElementById('btnRegionMode');
+            if (heatMode) { btnH.classList.add('active');
+                btnH.textContent = '🔥 热源√';
+                canvas.style.cursor = 'cell'; } else { btnH.classList.remove('active');
+                btnH.textContent = '🔥 热源';
+                canvas.style.cursor = regionMode ? 'crosshair' : 'crosshair'; }
+            if (regionMode) { btnR.classList.add('active');
+                btnR.textContent = '📏 框选√';
+                document.getElementById('regionModeLabel').textContent = '(激活)';
+                document.getElementById('regionModeLabel').style.color = '#10b981'; } else { btnR.classList.remove(
+                    'active');
+                btnR.textContent = '📏 框选';
+                document.getElementById('regionModeLabel').textContent = '(未激活)';
+                document.getElementById('regionModeLabel').style.color = '#64748b'; }
         }
 
         function setPlayButtonState(isRunning) {
             const btn = document.getElementById('btnPlay');
             running = isRunning;
-            if (isRunning) {
-                btn.textContent = '⏸ 暂停';
+            if (isRunning) { btn.textContent = '⏸ 暂停';
                 btn.classList.remove('btn-primary');
-                btn.classList.add('btn-secondary');
-            } else {
-                btn.textContent = '▶ 运行';
+                btn.classList.add('btn-secondary'); } else { btn.textContent = '▶ 运行';
                 btn.classList.remove('btn-secondary');
-                btn.classList.add('btn-primary');
-            }
+                btn.classList.add('btn-primary'); }
         }
 
         function togglePlay() {
-            if (running) {
-                setPlayButtonState(false);
-                if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-            } else {
-                setPlayButtonState(true);
-                animate();
-            }
+            if (running) { setPlayButtonState(false); if (animationId) { cancelAnimationFrame(animationId);
+                animationId = null; } } else { if (viewingSnapshotIdx >= 0) {
+            resumeFromHistory(); } if (snapshots.length === 0 && atoms.length > 0) {
+                recordSnapshot();
+                nextSnapshotAt = stepCounter + SNAPSHOT_INTERVAL;
+            } setPlayButtonState(true);
+            animate(); }
         }
 
         function clearAll() {
@@ -929,21 +1185,162 @@
             stepCounter = 0;
             selectedAtomIdx = null;
             latestForces = [];
+            snapshots = [];
+            viewingSnapshotIdx = -1;
+            savedForSnapshot = null;
+            nextSnapshotAt = SNAPSHOT_INTERVAL;
+            regionRect = null;
+            refreshHeatSourceUI();
+            updateInspectorPanel();
+            updateRegionStats();
+            updateEnergyDisplay();
+            updateAtomCount();
+            drawChart();
+            updateTimelineUI();
+            render();
+        }
+
+        function snapshotAtoms() {
+            return deepCopyAtoms(atoms);
+        }
+
+        function recordSnapshot() {
+            if (snapshots.length >= MAX_SNAPSHOTS) snapshots.shift();
+            snapshots.push({
+                atoms: deepCopyAtoms(atoms),
+                heatSources: deepCopyHS(heatSources),
+                energies: { ...energies },
+                currentTemperature: currentTemperature,
+                stepCounter: stepCounter,
+                history: {
+                    kinetic: [...history.kinetic],
+                    potential: [...history.potential],
+                    total: [...history.total],
+                    temperature: [...history.temperature]
+                },
+            });
+            if (viewingSnapshotIdx === snapshots.length - 2) viewingSnapshotIdx = snapshots.length - 1;
+            updateTimelineUI();
+        }
+
+        function goToSnapshot(idx) {
+            if (idx < 0 || idx >= snapshots.length) return;
+            if (running) { setPlayButtonState(false); if (animationId) { cancelAnimationFrame(animationId);
+                animationId = null; } }
+            if (viewingSnapshotIdx < 0 && snapshots.length > 0) {
+                savedForSnapshot = {
+                    atoms: deepCopyAtoms(atoms),
+                    heatSources: deepCopyHS(heatSources),
+                    energies: { ...energies },
+                    currentTemperature,
+                    stepCounter,
+                    history: {
+                        kinetic: [...history.kinetic],
+                        potential: [...history.potential],
+                        total: [...history.total],
+                        temperature: [...history.temperature]
+                    },
+                };
+            }
+            viewingSnapshotIdx = idx;
+            const snap = snapshots[idx];
+            atoms = deepCopyAtoms(snap.atoms);
+            heatSources = deepCopyHS(snap.heatSources);
+            energies = { ...snap.energies };
+            currentTemperature = snap.currentTemperature;
+            stepCounter = snap.stepCounter;
+            history = {
+                kinetic: [...snap.history.kinetic],
+                potential: [...snap.history.potential],
+                total: [...snap.history.total],
+                temperature: [...snap.history.temperature]
+            };
+            selectedAtomIdx = null;
+            latestForces = [];
+            recomputeObservables();
             refreshHeatSourceUI();
             updateInspectorPanel();
             updateEnergyDisplay();
             updateAtomCount();
             drawChart();
+            updateTimelineUI();
             render();
+        }
+
+        function resumeFromHistory() {
+            if (viewingSnapshotIdx < 0) return;
+            if (savedForSnapshot) {
+                atoms = savedForSnapshot.atoms;
+                heatSources = savedForSnapshot.heatSources;
+                energies = savedForSnapshot.energies;
+                currentTemperature = savedForSnapshot.currentTemperature;
+                stepCounter = savedForSnapshot.stepCounter;
+                history = savedForSnapshot.history;
+                savedForSnapshot = null;
+            }
+            viewingSnapshotIdx = -1;
+            latestForces = [];
+            recomputeObservables();
+            refreshHeatSourceUI();
+            updateInspectorPanel();
+            updateEnergyDisplay();
+            updateAtomCount();
+            drawChart();
+            updateTimelineUI();
+            render();
+        }
+
+        function recomputeObservables() {
+            if (atoms.length > 0) {
+                const { forces, potential } = computeForcesAndPotential();
+                latestForces = forces;
+                let kinetic = 0;
+                for (const atom of atoms) kinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
+                energies.kinetic = kinetic;
+                energies.potential = potential;
+                energies.total = kinetic + potential;
+                currentTemperature = kinetic / atoms.length;
+                updateEnergyDisplay();
+            }
+            updateRegionStats();
+        }
+
+        function updateTimelineUI() {
+            const slider = document.getElementById('timelineSlider');
+            const info = document.getElementById('timelineInfo');
+            const resumeBtn = document.getElementById('btnTimelineResume');
+
+            if (snapshots.length === 0) {
+                slider.max = 0;
+                slider.value = 0;
+                slider.disabled = true;
+                info.innerHTML = '<span class="live">● 实时</span> Step ' + stepCounter;
+                resumeBtn.style.display = 'none';
+                return;
+            }
+
+            slider.max = snapshots.length - 1;
+            slider.disabled = false;
+
+            if (viewingSnapshotIdx >= 0) {
+                slider.value = viewingSnapshotIdx;
+                const snap = snapshots[viewingSnapshotIdx];
+                info.innerHTML = '<span class="historic">◉ 快照 ' + (viewingSnapshotIdx + 1) + '/' + snapshots.length +
+                    '</span> Step ' + snap.stepCounter;
+                resumeBtn.style.display = 'inline-block';
+            } else {
+                slider.value = snapshots.length - 1;
+                info.innerHTML = '<span class="live">● 实时</span> Step ' + stepCounter;
+                resumeBtn.style.display = 'none';
+            }
         }
 
         function applyPreset(name) {
             clearAll();
             heatSources = [];
             heatMode = false;
-            document.getElementById('btnHeatMode').textContent = '🔥 热源模式：关';
-            document.getElementById('btnHeatMode').classList.remove('active');
-            canvas.style.cursor = 'crosshair';
+            regionMode = false;
+            updateModeButtonStyles();
 
             switch (name) {
                 case 'gas':
@@ -953,11 +1350,8 @@
                     setParamUI('friction', 0.0, '0.000');
                     for (let i = 0; i < 60; i++) {
                         const t = atomTypes[Math.floor(Math.random() * 2)];
-                        const x = 100 + Math.random() * (WIDTH - 200);
-                        const y = 100 + Math.random() * (HEIGHT - 200);
-                        const vx = (Math.random() - 0.5) * 3;
-                        const vy = (Math.random() - 0.5) * 3;
-                        addAtomAt(x, y, vx, vy, t);
+                        addAtomAt(100 + Math.random() * (WIDTH - 200), 100 + Math.random() * (HEIGHT - 200), (Math.random() -
+                            0.5) * 3, (Math.random() - 0.5) * 3, t);
                     }
                     break;
                 case 'lattice':
@@ -970,36 +1364,34 @@
                     const rows = Math.floor((HEIGHT - 100) / spacing);
                     const ox = (WIDTH - cols * spacing) / 2 + spacing / 2;
                     const oy = (HEIGHT - rows * spacing) / 2 + spacing / 2;
-                    for (let r = 0; r < rows; r++) {
+                    for (let r = 0; r < rows; r++)
                         for (let c = 0; c < cols; c++) {
                             const t = atomTypes[Math.floor(Math.random() * 2)];
                             const x = ox + c * spacing + (r % 2 === 0 ? 0 : spacing / 2);
                             const y = oy + r * spacing;
-                            if (x > 50 && x < WIDTH - 50 && y > 50 && y < HEIGHT - 50) {
-                                addAtomAt(x, y, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5, t);
-                            }
+                            if (x > 50 && x < WIDTH - 50 && y > 50 && y < HEIGHT - 50) addAtomAt(x, y, (Math.random() - 0.5) *
+                                0.5, (Math.random() - 0.5) * 0.5, t);
                         }
-                    }
                     break;
                 case 'collide':
                     params.temperature = 0.5;
                     params.friction = 0.0;
                     setParamUI('temperature', 0.5, '0.50');
                     setParamUI('friction', 0.0, '0.000');
-                    const cx1 = WIDTH * 0.3;
-                    const cx2 = WIDTH * 0.7;
-                    const cy = HEIGHT * 0.5;
+                    const cx1 = WIDTH * 0.3,
+                        cx2 = WIDTH * 0.7,
+                        cy = HEIGHT * 0.5;
                     for (let i = 0; i < 25; i++) {
-                        const t = atomTypes[Math.floor(Math.random() * 2)];
-                        const angle = Math.random() * Math.PI * 2;
-                        const dist = Math.random() * 50;
-                        addAtomAt(cx1 + Math.cos(angle) * dist, cy + Math.sin(angle) * dist, 1.5 + Math.random(), (Math.random() - 0.5), t);
+                        const t = atomTypes[Math.floor(Math.random() * 2)],
+                            a = Math.random() * Math.PI * 2,
+                            d = Math.random() * 50;
+                        addAtomAt(cx1 + Math.cos(a) * d, cy + Math.sin(a) * d, 1.5 + Math.random(), Math.random() - 0.5, t);
                     }
                     for (let i = 0; i < 25; i++) {
-                        const t = atomTypes[Math.floor(Math.random() * 2)];
-                        const angle = Math.random() * Math.PI * 2;
-                        const dist = Math.random() * 50;
-                        addAtomAt(cx2 + Math.cos(angle) * dist, cy + Math.sin(angle) * dist, -1.5 - Math.random(), (Math.random() - 0.5), t);
+                        const t = atomTypes[Math.floor(Math.random() * 2)],
+                            a = Math.random() * Math.PI * 2,
+                            d = Math.random() * 50;
+                        addAtomAt(cx2 + Math.cos(a) * d, cy + Math.sin(a) * d, -1.5 - Math.random(), Math.random() - 0.5, t);
                     }
                     break;
                 case 'convection':
@@ -1010,11 +1402,13 @@
                     heatSources = [{ x: WIDTH / 2, y: HEIGHT - 30, radius: 120, power: 0.03, enabled: true }];
                     for (let i = 0; i < 40; i++) {
                         const t = atomTypes[Math.floor(Math.random() * 3)];
-                        addAtomAt(150 + Math.random() * (WIDTH - 300), HEIGHT * 0.3 + Math.random() * (HEIGHT * 0.4), (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, t);
+                        addAtomAt(150 + Math.random() * (WIDTH - 300), HEIGHT * 0.3 + Math.random() * (HEIGHT * 0.4), (Math
+                            .random() - 0.5) * 2, (Math.random() - 0.5) * 2, t);
                     }
                     refreshHeatSourceUI();
                     break;
             }
+            recomputeObservables();
             updateAtomCount();
             render();
         }
@@ -1029,8 +1423,8 @@
 
         function addAtomAt(x, y, vx, vy, type) {
             const overlapping = atoms.some(atom => {
-                const dx = atom.x - x;
-                const dy = atom.y - y;
+                const dx = atom.x - x,
+                    dy = atom.y - y;
                 return Math.sqrt(dx * dx + dy * dy) < atom.radius + type.radius;
             });
             if (!overlapping) {
@@ -1041,8 +1435,10 @@
         }
 
         function addAtom(x, y, vx = 0, vy = 0) {
+            if (viewingSnapshotIdx >= 0) return false;
             const result = addAtomAt(x, y, vx, vy, selectedType);
-            if (result) updateAtomCount();
+            if (result) { updateAtomCount();
+                recomputeObservables(); }
             return result;
         }
 
@@ -1066,270 +1462,242 @@
             const rc13 = rc12 * rc;
             const fShift = 24 * params.epsilon * (2 * s12 / rc13 - s6 / rc7);
             const uShift = 4 * params.epsilon * (s12 / rc12 - s6 / rc6);
-
-            for (let i = 0; i < atoms.length; i++) {
+            for (let i = 0; i < atoms.length; i++)
                 for (let j = i + 1; j < atoms.length; j++) {
-                    let dx = atoms[i].x - atoms[j].x;
-                    let dy = atoms[i].y - atoms[j].y;
+                    let dx = atoms[i].x - atoms[j].x,
+                        dy = atoms[i].y - atoms[j].y;
                     if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
                     if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
-
                     const r2 = dx * dx + dy * dy;
                     if (r2 >= rc2 || r2 <= 0) continue;
-
-                    const r = Math.sqrt(r2);
-                    const r6 = r2 * r2 * r2;
-                    const r12 = r6 * r6;
-                    const r7 = r6 * r;
-                    const r13 = r12 * r;
+                    const r = Math.sqrt(r2),
+                        r6 = r2 * r2 * r2,
+                        r12 = r6 * r6,
+                        r7 = r6 * r,
+                        r13 = r12 * r;
                     const fLJ = 24 * params.epsilon * (2 * s12 / r13 - s6 / r7) / r;
                     const f = fLJ - fShift / r;
-                    const fx = f * dx;
-                    const fy = f * dy;
-
-                    forces[i].fx += fx;
-                    forces[i].fy += fy;
-                    forces[j].fx -= fx;
-                    forces[j].fy -= fy;
-
+                    forces[i].fx += f * dx;
+                    forces[i].fy += f * dy;
+                    forces[j].fx -= f * dx;
+                    forces[j].fy -= f * dy;
                     const uLJ = 4 * params.epsilon * (s12 / r12 - s6 / r6);
                     potential += uLJ - uShift - fShift * (r - rc);
                 }
-            }
             return { forces, potential };
         }
 
         function findAtomAt(x, y) {
-            let bestIdx = -1;
-            let bestDist = Infinity;
+            let bestIdx = -1,
+                bestDist = Infinity;
             for (let i = 0; i < atoms.length; i++) {
-                const dx = atoms[i].x - x;
-                const dy = atoms[i].y - y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < atoms[i].radius + 6 && dist < bestDist) {
-                    bestDist = dist;
-                    bestIdx = i;
-                }
+                const dx = atoms[i].x - x,
+                    dy = atoms[i].y - y,
+                    dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < atoms[i].radius + 6 && dist < bestDist) { bestDist = dist;
+                    bestIdx = i; }
             }
             return bestIdx;
         }
 
         function computeAtomInteraction(idx) {
             let totalForce = 0;
-            const rc = params.rc * params.sigma;
-            const rc2 = rc * rc;
-            const s6 = params.sigma ** 6;
-            const s12 = s6 * s6;
-            const rc6 = rc ** 6;
-            const rc12 = rc6 * rc6;
-            const rc7 = rc6 * rc;
-            const rc13 = rc12 * rc;
+            const rc = params.rc * params.sigma,
+                rc2 = rc * rc;
+            const s6 = params.sigma ** 6,
+                s12 = s6 * s6;
+            const rc6 = rc ** 6,
+                rc12 = rc6 * rc6,
+                rc7 = rc6 * rc,
+                rc13 = rc12 * rc;
             const fShift = 24 * params.epsilon * (2 * s12 / rc13 - s6 / rc7);
-
             for (let j = 0; j < atoms.length; j++) {
                 if (j === idx) continue;
-                let dx = atoms[idx].x - atoms[j].x;
-                let dy = atoms[idx].y - atoms[j].y;
+                let dx = atoms[idx].x - atoms[j].x,
+                    dy = atoms[idx].y - atoms[j].y;
                 if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
                 if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
                 const r2 = dx * dx + dy * dy;
                 if (r2 >= rc2 || r2 <= 0) continue;
-                const r = Math.sqrt(r2);
-                const r6 = r2 * r2 * r2;
-                const r12 = r6 * r6;
-                const r7 = r6 * r;
-                const r13 = r12 * r;
+                const r = Math.sqrt(r2),
+                    r6 = r2 * r2 * r2,
+                    r12 = r6 * r6,
+                    r7 = r6 * r,
+                    r13 = r12 * r;
                 const fLJ = 24 * params.epsilon * (2 * s12 / r13 - s6 / r7) / r;
                 totalForce += Math.abs(fLJ - fShift / r);
             }
             return totalForce;
         }
 
-        function selectAtom(idx) {
-            selectedAtomIdx = idx;
+        function selectAtom(idx) { selectedAtomIdx = idx;
             updateInspectorPanel();
-            render();
-        }
+            render(); }
 
-        function deselectedAtom() {
-            selectedAtomIdx = null;
+        function deselectedAtom() { selectedAtomIdx = null;
             updateInspectorPanel();
-            render();
-        }
+            render(); }
 
         function updateInspectorPanel() {
             const panel = document.getElementById('inspectorPanel');
-            if (selectedAtomIdx === null || selectedAtomIdx >= atoms.length) {
-                selectedAtomIdx = null;
-                panel.innerHTML = '<div class="inspector-none">暂停后点击画布上的原子查看详情</div>';
-                return;
-            }
-            const a = atoms[selectedAtomIdx];
-            const speed = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-            const ke = 0.5 * a.mass * speed * speed;
-            const interaction = computeAtomInteraction(selectedAtomIdx);
-            const typeName = atomTypes.find(t => t.type === a.type)?.name || a.type;
-            panel.innerHTML = `
-                <div class="inspector-row"><span class="label">类型</span><span class="value" style="color:${a.color}">${typeName}</span></div>
-                <div class="inspector-row"><span class="label">质量</span><span class="value">${a.mass.toFixed(1)}</span></div>
-                <div class="inspector-row"><span class="label">速率</span><span class="value">${speed.toFixed(3)}</span></div>
-                <div class="inspector-row"><span class="label">动能</span><span class="value" style="color:#fbbf24">${ke.toFixed(3)}</span></div>
-                <div class="inspector-row">
-                    <span class="label">Vx</span>
-                    <span class="inspector-edit">
-                        <input type="number" id="editVx" value="${a.vx.toFixed(3)}" step="0.01">
-                    </span>
-                </div>
-                <div class="inspector-row">
-                    <span class="label">Vy</span>
-                    <span class="inspector-edit">
-                        <input type="number" id="editVy" value="${a.vy.toFixed(3)}" step="0.01">
-                    </span>
-                </div>
-                <div class="inspector-row">
-                    <span class="label">相互作用强度</span>
-                    <span class="value" style="color:#a78bfa">${interaction.toFixed(3)}</span>
-                </div>
-                <div class="inspector-actions">
-                    <button class="btn-small green" id="btnApplyVel">✓ 应用速度</button>
-                    <button class="btn-small" id="btnDeleteAtom" style="background:#ef4444">✕ 删除</button>
-                </div>
-            `;
+            if (selectedAtomIdx === null || selectedAtomIdx >= atoms.length) { selectedAtomIdx = null;
+                panel.innerHTML =
+                '<div class="inspector-none">暂停后点击画布上的原子查看详情</div>'; return; }
+            const a = atoms[selectedAtomIdx],
+                speed = Math.sqrt(a.vx * a.vx + a.vy * a.vy),
+                ke = 0.5 * a.mass * speed * speed,
+                interaction = computeAtomInteraction(selectedAtomIdx),
+                typeName = atomTypes.find(t => t.type === a.type)?.name || a.type;
+            panel.innerHTML =
+                `<div class="inspector-row"><span class="label">类型</span><span class="value" style="color:${a.color}">${typeName}</span></div>` +
+                `<div class="inspector-row"><span class="label">质量</span><span class="value">${a.mass.toFixed(1)}</span></div>` +
+                `<div class="inspector-row"><span class="label">速率</span><span class="value">${speed.toFixed(3)}</span></div>` +
+                `<div class="inspector-row"><span class="label">动能</span><span class="value" style="color:#fbbf24">${ke.toFixed(3)}</span></div>` +
+                `<div class="inspector-row"><span class="label">Vx</span><span class="inspector-edit"><input type="number" id="editVx" value="${a.vx.toFixed(3)}" step="0.01"></span></div>` +
+                `<div class="inspector-row"><span class="label">Vy</span><span class="inspector-edit"><input type="number" id="editVy" value="${a.vy.toFixed(3)}" step="0.01"></span></div>` +
+                `<div class="inspector-row"><span class="label">相互作用</span><span class="value" style="color:#a78bfa">${interaction.toFixed(3)}</span></div>` +
+                `<div class="inspector-actions"><button class="btn-small green" id="btnApplyVel">✓ 应用</button><button class="btn-small" id="btnDeleteAtom" style="background:#ef4444">✕ 删除</button></div>`;
             document.getElementById('btnApplyVel').addEventListener('click', () => {
-                const vx = parseFloat(document.getElementById('editVx').value);
-                const vy = parseFloat(document.getElementById('editVy').value);
-                if (!isNaN(vx) && !isNaN(vy) && selectedAtomIdx < atoms.length) {
-                    atoms[selectedAtomIdx].vx = vx;
+                const vx = parseFloat(document.getElementById('editVx').value),
+                    vy = parseFloat(document.getElementById('editVy').value);
+                if (!isNaN(vx) && !isNaN(vy) && selectedAtomIdx < atoms.length) { atoms[selectedAtomIdx].vx = vx;
                     atoms[selectedAtomIdx].vy = vy;
+                    recomputeObservables();
                     updateInspectorPanel();
-                    render();
-                }
+                    render(); }
             });
             document.getElementById('btnDeleteAtom').addEventListener('click', () => {
                 atoms.splice(selectedAtomIdx, 1);
                 selectedAtomIdx = null;
+                latestForces = [];
+                recomputeObservables();
                 updateAtomCount();
                 updateInspectorPanel();
                 render();
             });
         }
 
+        function updateRegionStats() {
+            const panel = document.getElementById('regionStats');
+            if (!regionRect) { panel.innerHTML = '<div class="inspector-none">开启框选模式后在画布上拖拽选区</div>'; return; }
+            const { x1, y1, x2, y2 } = regionRect;
+            const rx = Math.min(x1, x2),
+                ry = Math.min(y1, y2),
+                rw = Math.abs(x2 - x1),
+                rh = Math.abs(y2 - y1);
+            let count = 0,
+                totalSpeed = 0,
+                totalKe = 0,
+                typeCount = {};
+            for (const atom of atoms) {
+                if (atom.x >= rx && atom.x <= rx + rw && atom.y >= ry && atom.y <= ry + rh) {
+                    count++;
+                    const speed = Math.sqrt(atom.vx * atom.vx + atom.vy * atom.vy);
+                    totalSpeed += speed;
+                    totalKe += 0.5 * atom.mass * speed * speed;
+                    const tn = atomTypes.find(t => t.type === atom.type)?.name || atom.type;
+                    typeCount[tn] = (typeCount[tn] || 0) + 1;
+                }
+            }
+            if (count === 0) { panel.innerHTML = '<div class="inspector-none">选区内无原子</div>'; return; }
+            const avgSpeed = totalSpeed / count,
+                avgTemp = totalKe / count;
+            let dominantType = '',
+                maxCount = 0;
+            for (const [k, v] of Object.entries(typeCount)) { if (v > maxCount) { maxCount = v;
+                    dominantType = k; } }
+            panel.innerHTML = `<div class="inspector-row"><span class="label">粒子数</span><span class="value">${count}</span></div>` +
+                `<div class="inspector-row"><span class="label">平均速率</span><span class="value">${avgSpeed.toFixed(3)}</span></div>` +
+                `<div class="inspector-row"><span class="label">平均温度</span><span class="value" style="color:#f472b6">${avgTemp.toFixed(3)}</span></div>` +
+                `<div class="inspector-row"><span class="label">总动能</span><span class="value" style="color:#fbbf24">${totalKe.toFixed(3)}</span></div>` +
+                `<div class="inspector-row"><span class="label">主要类型</span><span class="value">${dominantType} (${maxCount})</span></div>`;
+        }
+
         function scaleTemperature() {
             if (atoms.length === 0) return;
             let currentTemp = 0;
-            for (const atom of atoms) {
-                currentTemp += atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
-            }
+            for (const atom of atoms) currentTemp += atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
             currentTemp /= (2 * atoms.length);
             currentTemperature = currentTemp;
             if (params.temperature > 0 && currentTemp > 0) {
-                const tau = 0.02;
-                const scale = Math.sqrt(1 + (params.temperature / Math.max(currentTemp, 0.001) - 1) * tau);
-                for (const atom of atoms) {
-                    atom.vx *= scale;
-                    atom.vy *= scale;
-                }
+                const tau = 0.02,
+                    scale = Math.sqrt(1 + (params.temperature / Math.max(currentTemp, 0.001) - 1) * tau);
+                for (const atom of atoms) { atom.vx *= scale;
+                    atom.vy *= scale; }
             }
         }
 
         function applyAllHeatSources() {
             for (const hs of heatSources) {
                 if (!hs.enabled) continue;
-                for (const atom of atoms) {
-                    const dx = atom.x - hs.x;
-                    const dy = atom.y - hs.y;
-                    if (dx * dx + dy * dy < hs.radius * hs.radius) {
-                        const factor = 1 + hs.power;
-                        atom.vx *= factor;
-                        atom.vy *= factor;
-                    }
-                }
+                for (const atom of atoms) { const dx = atom.x - hs.x,
+                        dy = atom.y - hs.y; if (dx * dx + dy * dy < hs.radius * hs.radius) { const f = 1 + hs.power;
+                        atom.vx *= f;
+                        atom.vy *= f; } }
             }
         }
 
         function applyFriction() {
             if (params.friction === 0) return;
             const f = 1 - params.friction;
-            for (const atom of atoms) {
-                atom.vx *= f;
-                atom.vy *= f;
-            }
+            for (const atom of atoms) { atom.vx *= f;
+                atom.vy *= f; }
         }
 
         function step() {
-            if (atoms.length === 0) {
-                render();
-                return;
-            }
+            if (atoms.length === 0) { render(); return; }
+            if (viewingSnapshotIdx >= 0) return;
 
             scaleTemperature();
-
             const { forces, potential } = computeForcesAndPotential();
             latestForces = forces;
-
             for (let i = 0; i < atoms.length; i++) {
-                const atom = atoms[i];
-                const f = forces[i];
+                const atom = atoms[i],
+                    f = forces[i];
                 atom.x += atom.vx * params.dt + 0.5 * (f.fx / atom.mass) * params.dt * params.dt;
                 atom.y += atom.vy * params.dt + 0.5 * (f.fy / atom.mass) * params.dt * params.dt;
                 atom.vx += 0.5 * (f.fx / atom.mass) * params.dt;
                 atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
                 wrapPosition(atom);
             }
-
             applyFriction();
             applyAllHeatSources();
-
             const { forces: forces2 } = computeForcesAndPotential();
             latestForces = forces2;
-
             for (let i = 0; i < atoms.length; i++) {
-                const atom = atoms[i];
-                const f = forces2[i];
+                const atom = atoms[i],
+                    f = forces2[i];
                 atom.vx += 0.5 * (f.fx / atom.mass) * params.dt;
                 atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
             }
-
             let finalKinetic = 0;
-            for (const atom of atoms) {
-                finalKinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
-            }
-
+            for (const atom of atoms) finalKinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
             const tempAfter = atoms.length > 0 ? finalKinetic / atoms.length : 0;
             currentTemperature = tempAfter;
             energies.kinetic = finalKinetic;
             energies.potential = potential;
             energies.total = finalKinetic + potential;
-
             stepCounter++;
-            if (stepCounter % RECORD_EVERY === 0) {
-                recordHistory(finalKinetic, potential, finalKinetic + potential, tempAfter);
-            }
-
-            if (selectedAtomIdx !== null && selectedAtomIdx >= atoms.length) {
-                selectedAtomIdx = null;
-                updateInspectorPanel();
-            }
-
+            if (stepCounter % RECORD_EVERY === 0) recordHistory(finalKinetic, potential, finalKinetic + potential,
+            tempAfter);
+            if (stepCounter >= nextSnapshotAt) { recordSnapshot();
+                nextSnapshotAt = stepCounter + SNAPSHOT_INTERVAL; }
+            if (selectedAtomIdx !== null && selectedAtomIdx >= atoms.length) { selectedAtomIdx = null;
+                updateInspectorPanel(); }
             updateEnergyDisplay();
+            updateRegionStats();
             render();
             if (stepCounter % RECORD_EVERY === 0) drawChart();
         }
 
-        function animate() {
-            if (running) {
-                step();
-                animationId = requestAnimationFrame(animate);
-            }
-        }
+        function animate() { if (running) { step();
+                animationId = requestAnimationFrame(animate); } }
 
         function recordHistory(kinetic, potential, total, temp) {
-            if (history.kinetic.length >= MAX_HISTORY) {
-                history.kinetic.shift();
+            if (history.kinetic.length >= MAX_HISTORY) { history.kinetic.shift();
                 history.potential.shift();
                 history.total.shift();
-                history.temperature.shift();
-            }
+                history.temperature.shift(); }
             history.kinetic.push(kinetic);
             history.potential.push(potential);
             history.total.push(total);
@@ -1337,73 +1705,55 @@
         }
 
         function drawChart() {
-            const cw = CHART_W;
-            const ch = CHART_H;
+            const cw = CHART_W,
+                ch = CHART_H;
             chartCtx.fillStyle = '#080d18';
             chartCtx.fillRect(0, 0, cw, ch);
-
-            const padLeft = 50;
-            const padRight = 10;
-            const padTop = 8;
-            const padBottom = 20;
-            const plotW = cw - padLeft - padRight;
-            const plotH = ch - padTop - padBottom;
-
-            if (history.kinetic.length < 2) {
-                chartCtx.fillStyle = '#475569';
-                chartCtx.font = '11px Inter, sans-serif';
+            const padLeft = 50,
+                padRight = 10,
+                padTop = 6,
+                padBottom = 16,
+                plotW = cw - padLeft - padRight,
+                plotH = ch - padTop - padBottom;
+            if (history.kinetic.length < 2) { chartCtx.fillStyle = '#475569';
+                chartCtx.font = '10px Inter, sans-serif';
                 chartCtx.textAlign = 'center';
-                chartCtx.fillText('运行后显示曲线', cw / 2, ch / 2);
-                return;
-            }
-
+                chartCtx.fillText('运行后显示曲线', cw / 2, ch / 2); return; }
             const allVals = [...history.kinetic, ...history.potential, ...history.total, ...history.temperature];
-            let minVal = Math.min(...allVals);
-            let maxVal = Math.max(...allVals);
-            const range = maxVal - minVal || 1;
+            let minVal = Math.min(...allVals),
+                maxVal = Math.max(...allVals),
+                range = maxVal - minVal || 1;
             minVal -= range * 0.1;
             maxVal += range * 0.1;
-
             const toX = (i) => padLeft + (i / (history.kinetic.length - 1)) * plotW;
             const toY = (v) => padTop + plotH - ((v - minVal) / (maxVal - minVal + 0.001)) * plotH;
-
             chartCtx.strokeStyle = '#1e293b';
             chartCtx.lineWidth = 1;
-            const gridLines = 4;
-            for (let i = 0; i <= gridLines; i++) {
-                const y = padTop + (plotH * i) / gridLines;
+            const gridLines = 3;
+            for (let i = 0; i <= gridLines; i++) { const y = padTop + (plotH * i) / gridLines;
                 chartCtx.beginPath();
                 chartCtx.moveTo(padLeft, y);
                 chartCtx.lineTo(cw - padRight, y);
-                chartCtx.stroke();
-            }
-
+                chartCtx.stroke(); }
             chartCtx.fillStyle = '#64748b';
-            chartCtx.font = '9px monospace';
+            chartCtx.font = '8px monospace';
             chartCtx.textAlign = 'right';
-            for (let i = 0; i <= gridLines; i++) {
-                const val = minVal + (range * i) / gridLines;
-                const y = padTop + plotH - (plotH * i) / gridLines;
-                chartCtx.fillText(val.toFixed(1), padLeft - 4, y + 3);
-            }
-
+            for (let i = 0; i <= gridLines; i++) { const val = minVal + (range * i) / gridLines;
+                chartCtx.fillText(val.toFixed(1), padLeft - 4, padTop + plotH - (plotH * i) / gridLines + 3); }
             const series = [
-                { data: history.kinetic, color: '#fbbf24', lineWidth: 1.5 },
-                { data: history.potential, color: '#a78bfa', lineWidth: 1.5 },
-                { data: history.total, color: '#34d399', lineWidth: 2 },
-                { data: history.temperature, color: '#f472b6', lineWidth: 1, dash: [4, 3] },
+                { data: history.kinetic, color: '#fbbf24', lw: 1.5 },
+                { data: history.potential, color: '#a78bfa', lw: 1.5 },
+                { data: history.total, color: '#34d399', lw: 2 },
+                { data: history.temperature, color: '#f472b6', lw: 1, dash: [4, 3] },
             ];
-
             for (const s of series) {
                 if (s.data.length < 2) continue;
                 chartCtx.strokeStyle = s.color;
-                chartCtx.lineWidth = s.lineWidth;
+                chartCtx.lineWidth = s.lw;
                 chartCtx.setLineDash(s.dash || []);
                 chartCtx.beginPath();
                 chartCtx.moveTo(toX(0), toY(s.data[0]));
-                for (let i = 1; i < s.data.length; i++) {
-                    chartCtx.lineTo(toX(i), toY(s.data[i]));
-                }
+                for (let i = 1; i < s.data.length; i++) chartCtx.lineTo(toX(i), toY(s.data[i]));
                 chartCtx.stroke();
             }
             chartCtx.setLineDash([]);
@@ -1412,25 +1762,21 @@
         function render() {
             ctx.fillStyle = '#0a101f';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-            if (obsLayers.heatmap && atoms.length > 0) {
-                drawHeatmap();
-            }
-
+            if (obsLayers.heatmap && atoms.length > 0) drawHeatmap();
             if (obsLayers.hsCover) {
                 for (const hs of heatSources) {
                     const alpha = hs.enabled ? 0.35 : 0.1;
-                    const gradient = ctx.createRadialGradient(hs.x, hs.y, 0, hs.x, hs.y, hs.radius);
-                    gradient.addColorStop(0, `rgba(251, 191, 36, ${alpha})`);
-                    gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
-                    ctx.fillStyle = gradient;
+                    const g = ctx.createRadialGradient(hs.x, hs.y, 0, hs.x, hs.y, hs.radius);
+                    g.addColorStop(0, `rgba(251,191,36,${alpha})`);
+                    g.addColorStop(1, 'rgba(251,191,36,0)');
+                    ctx.fillStyle = g;
                     ctx.beginPath();
                     ctx.arc(hs.x, hs.y, hs.radius, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.strokeStyle = hs.enabled ? 'rgba(251, 191, 36, 0.6)' : 'rgba(251, 191, 36, 0.2)';
+                    ctx.strokeStyle = hs.enabled ? 'rgba(251,191,36,0.6)' : 'rgba(251,191,36,0.2)';
                     ctx.lineWidth = 2;
                     ctx.stroke();
-                    ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
+                    ctx.fillStyle = 'rgba(251,191,36,0.8)';
                     ctx.beginPath();
                     ctx.arc(hs.x, hs.y, 4, 0, Math.PI * 2);
                     ctx.fill();
@@ -1439,112 +1785,138 @@
 
             for (let i = 0; i < atoms.length; i++) {
                 const atom = atoms[i];
-                const gradient = ctx.createRadialGradient(
-                    atom.x - atom.radius * 0.3, atom.y - atom.radius * 0.3, 0,
-                    atom.x, atom.y, atom.radius
-                );
-                gradient.addColorStop(0, lightenColor(atom.color, 35));
-                gradient.addColorStop(1, atom.color);
-                ctx.fillStyle = gradient;
+                const g = ctx.createRadialGradient(atom.x - atom.radius * 0.3, atom.y - atom.radius * 0.3, 0, atom.x, atom.y,
+                    atom.radius);
+                g.addColorStop(0, lightenColor(atom.color, 35));
+                g.addColorStop(1, atom.color);
+                ctx.fillStyle = g;
                 ctx.beginPath();
                 ctx.arc(atom.x, atom.y, atom.radius, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.strokeStyle = lightenColor(atom.color, 55);
                 ctx.lineWidth = 2;
                 ctx.stroke();
-
-                if (selectedAtomIdx === i) {
-                    ctx.strokeStyle = '#ffffff';
+                if (selectedAtomIdx === i) { ctx.strokeStyle = '#ffffff';
                     ctx.lineWidth = 3;
                     ctx.setLineDash([4, 3]);
                     ctx.beginPath();
                     ctx.arc(atom.x, atom.y, atom.radius + 5, 0, Math.PI * 2);
                     ctx.stroke();
-                    ctx.setLineDash([]);
-                }
+                    ctx.setLineDash([]); }
             }
 
             if (obsLayers.force && latestForces.length === atoms.length) {
                 for (let i = 0; i < atoms.length; i++) {
-                    const atom = atoms[i];
-                    const f = latestForces[i];
-                    const fmag = Math.sqrt(f.fx * f.fx + f.fy * f.fy);
+                    const atom = atoms[i],
+                        f = latestForces[i],
+                        fmag = Math.sqrt(f.fx * f.fx + f.fy * f.fy);
                     if (fmag < 0.001) continue;
-                    const scale = Math.min(60, fmag * 0.5);
-                    const nx = f.fx / fmag;
-                    const ny = f.fy / fmag;
-                    const ex = atom.x + nx * scale;
-                    const ey = atom.y + ny * scale;
-                    ctx.strokeStyle = 'rgba(239, 68, 68, 0.7)';
+                    const scale = Math.min(60, fmag * 0.5),
+                        nx = f.fx / fmag,
+                        ny = f.fy / fmag;
+                    const ex = atom.x + nx * scale,
+                        ey = atom.y + ny * scale;
+                    ctx.strokeStyle = 'rgba(239,68,68,0.7)';
                     ctx.lineWidth = 1.5;
                     ctx.beginPath();
                     ctx.moveTo(atom.x, atom.y);
                     ctx.lineTo(ex, ey);
                     ctx.stroke();
-                    if (scale > 8) {
-                        drawArrowHead(ctx, atom.x, atom.y, ex, ey, 5);
-                    }
+                    if (scale > 8) drawArrowHead(ctx, atom.x, atom.y, ex, ey, 5);
                 }
             }
-
             if (obsLayers.velocity) {
                 for (const atom of atoms) {
                     const speed = Math.sqrt(atom.vx * atom.vx + atom.vy * atom.vy);
                     if (speed < 0.01) continue;
-                    const scale = Math.min(50, speed * 5);
-                    const nx = atom.vx / speed;
-                    const ny = atom.vy / speed;
-                    const ex = atom.x + nx * scale;
-                    const ey = atom.y + ny * scale;
-                    ctx.strokeStyle = 'rgba(96, 165, 250, 0.7)';
+                    const scale = Math.min(50, speed * 5),
+                        nx = atom.vx / speed,
+                        ny = atom.vy / speed;
+                    const ex = atom.x + nx * scale,
+                        ey = atom.y + ny * scale;
+                    ctx.strokeStyle = 'rgba(96,165,250,0.7)';
                     ctx.lineWidth = 1.5;
                     ctx.beginPath();
                     ctx.moveTo(atom.x, atom.y);
                     ctx.lineTo(ex, ey);
                     ctx.stroke();
-                    if (scale > 6) {
-                        drawArrowHead(ctx, atom.x, atom.y, ex, ey, 4);
-                    }
+                    if (scale > 6) drawArrowHead(ctx, atom.x, atom.y, ex, ey, 4);
                 }
             }
 
-            if (heatMode) {
-                ctx.fillStyle = 'rgba(251, 191, 36, 0.15)';
-                ctx.fillRect(0, 0, WIDTH, HEIGHT);
-                ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
-                ctx.font = '14px Inter, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('热源模式：点击画布放置热源', WIDTH / 2, 30);
+            if (regionRect) {
+                const { x1, y1, x2, y2 } = regionRect;
+                const rx = Math.min(x1, x2),
+                    ry = Math.min(y1, y2),
+                    rw = Math.abs(x2 - x1),
+                    rh = Math.abs(y2 - y1);
+                ctx.strokeStyle = 'rgba(16,185,129,0.8)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([6, 3]);
+                ctx.strokeRect(rx, ry, rw, rh);
+                ctx.setLineDash([]);
+                ctx.fillStyle = 'rgba(16,185,129,0.08)';
+                ctx.fillRect(rx, ry, rw, rh);
             }
 
-            if (isDragging && dragStart && dragCurrent && !heatMode && !draggingHeatSource) {
-                ctx.strokeStyle = 'rgba(148, 163, 184, 0.8)';
+            if (heatMode || regionMode) {
+                const modeLabel = heatMode ? '热源模式：点击画布放置/拖拽热源' : '框选模式：拖拽画布选区';
+                const modeColor = heatMode ? 'rgba(251,191,36,0.15)' : 'rgba(16,185,129,0.1)';
+                const textColor = heatMode ? 'rgba(251,191,36,0.8)' : 'rgba(16,185,129,0.8)';
+                ctx.fillStyle = modeColor;
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                ctx.fillStyle = textColor;
+                ctx.font = '14px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(modeLabel, WIDTH / 2, 30);
+            }
+
+            if (isDragging && dragStart && dragCurrent && !heatMode && !regionMode && draggingHeatSource === null) {
+                ctx.strokeStyle = 'rgba(148,163,184,0.8)';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(dragStart.x, dragStart.y);
                 ctx.lineTo(dragCurrent.x, dragCurrent.y);
                 ctx.stroke();
-                const angle = Math.atan2(dragCurrent.y - dragStart.y, dragCurrent.x - dragStart.x);
-                const length = Math.sqrt((dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2);
-                const arrowLen = Math.min(10, length * 0.3);
-                drawArrowHead(ctx, dragStart.x, dragStart.y, dragCurrent.x, dragCurrent.y, arrowLen);
+                const len = Math.sqrt((dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2);
+                drawArrowHead(ctx, dragStart.x, dragStart.y, dragCurrent.x, dragCurrent.y, Math.min(10, len * 0.3));
+            }
+
+            if (regionMode && isDragging && dragStart && dragCurrent) {
+                const rx = Math.min(dragStart.x, dragCurrent.x),
+                    ry = Math.min(dragStart.y, dragCurrent.y),
+                    rw = Math.abs(dragCurrent.x - dragStart.x),
+                    rh = Math.abs(dragCurrent.y - dragStart.y);
+                ctx.strokeStyle = 'rgba(16,185,129,0.6)';
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([4, 3]);
+                ctx.strokeRect(rx, ry, rw, rh);
+                ctx.setLineDash([]);
+            }
+
+            if (viewingSnapshotIdx >= 0) {
+                ctx.fillStyle = 'rgba(245,158,11,0.12)';
+                ctx.fillRect(0, HEIGHT - 28, WIDTH, 28);
+                ctx.fillStyle = 'rgba(245,158,11,0.9)';
+                ctx.font = '12px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('回放模式：快照 ' + (viewingSnapshotIdx + 1) + '/' + snapshots.length, WIDTH / 2, HEIGHT - 10);
             }
         }
 
         function drawHeatmap() {
-            const gridSize = 15;
-            const cols = Math.ceil(WIDTH / gridSize);
-            const rows = Math.ceil(HEIGHT / gridSize);
-            const sigma2 = 2 * (gridSize * 1.5) ** 2;
-
-            for (let i = 0; i < rows; i++) {
+            const gridSize = 15,
+                cols = Math.ceil(WIDTH / gridSize),
+                rows = Math.ceil(HEIGHT / gridSize),
+                sigma2 = 2 * (gridSize * 1.5) ** 2;
+            for (let i = 0; i < rows; i++)
                 for (let j = 0; j < cols; j++) {
-                    const cx = j * gridSize + gridSize / 2;
-                    const cy = i * gridSize + gridSize / 2;
+                    const cx = j * gridSize + gridSize / 2,
+                        cy = i * gridSize + gridSize / 2;
                     let tempSum = 0;
                     for (const atom of atoms) {
-                        let dx = atom.x - cx;
-                        let dy = atom.y - cy;
+                        let dx = atom.x - cx,
+                            dy = atom.y - cy;
                         if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
                         if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
                         const dist2 = dx * dx + dy * dy;
@@ -1553,15 +1925,14 @@
                         tempSum += ke * Math.exp(-dist2 / sigma2);
                     }
                     if (tempSum < 0.01) continue;
-                    const alpha = Math.min(0.6, tempSum * 0.02);
-                    const t = Math.min(1, tempSum * 0.1);
-                    const r = Math.round(t * 255);
-                    const g = Math.round(Math.max(0, 1 - Math.abs(t - 0.5) * 2) * 200);
-                    const b = Math.round((1 - t) * 255);
+                    const alpha = Math.min(0.6, tempSum * 0.02),
+                        t = Math.min(1, tempSum * 0.1),
+                        r = Math.round(t * 255),
+                        g = Math.round(Math.max(0, 1 - Math.abs(t - 0.5) * 2) * 200),
+                        b = Math.round((1 - t) * 255);
                     ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
                     ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
                 }
-            }
         }
 
         function drawArrowHead(context, fromX, fromY, toX, toY, size) {
@@ -1575,11 +1946,11 @@
         }
 
         function lightenColor(color, percent) {
-            const num = parseInt(color.replace('#', ''), 16);
-            const amt = Math.round(2.55 * percent);
-            const R = Math.min(255, Math.max(0, (num >> 16) + amt));
-            const G = Math.min(255, Math.max(0, (num >> 8 & 0x00FF) + amt));
-            const B = Math.min(255, Math.max(0, (num & 0x0000FF) + amt));
+            const num = parseInt(color.replace('#', ''), 16),
+                amt = Math.round(2.55 * percent);
+            const R = Math.min(255, Math.max(0, (num >> 16) + amt)),
+                G = Math.min(255, Math.max(0, (num >> 8 & 0x00FF) + amt)),
+                B = Math.min(255, Math.max(0, (num & 0x0000FF) + amt));
             return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
         }
 
@@ -1590,81 +1961,62 @@
             document.getElementById('currentTemp').textContent = currentTemperature.toFixed(3);
         }
 
-        function updateAtomCount() {
-            document.getElementById('atomCount').textContent = atoms.length;
-        }
+        function updateAtomCount() { document.getElementById('atomCount').textContent = atoms.length; }
 
         function refreshHeatSourceUI() {
             const container = document.getElementById('heatSourceList');
             container.innerHTML = '';
-            if (heatSources.length === 0) {
-                container.innerHTML = '<div style="font-size:11px;color:#64748b;text-align:center;padding:8px;">点击热源模式后再点击画布添加</div>';
-                return;
-            }
+            if (heatSources.length === 0) { container.innerHTML =
+                '<div style="font-size:10px;color:#64748b;text-align:center;padding:6px;">点击热源按钮，再点击画布添加</div>'; return; }
             heatSources.forEach((hs, idx) => {
                 const item = document.createElement('div');
                 item.className = 'heat-source-item';
-                item.innerHTML = `
-                    <input type="checkbox" ${hs.enabled?'checked':''} data-idx="${idx}" class="hs-toggle">
-                    <span class="hs-label">热源${idx+1}</span>
-                    <span style="color:#64748b;font-size:10px;">半径</span>
-                    <input type="number" class="hs-radius" value="${hs.radius}" data-idx="${idx}" data-field="radius" min="20" max="300">
-                    <span style="color:#64748b;font-size:10px;">强度</span>
-                    <input type="number" class="hs-power" value="${hs.power.toFixed(3)}" data-idx="${idx}" data-field="power" min="0.001" max="0.5" step="0.001">
-                    <button class="btn-small" data-idx="${idx}" data-action="delete">✕</button>
-                `;
+                item.innerHTML =
+                    `<input type="checkbox" ${hs.enabled?'checked':''} data-idx="${idx}" class="hs-toggle">` +
+                    `<span class="hs-label">热源${idx+1}</span>` +
+                    `<span style="color:#64748b;font-size:10px;">半径</span>` +
+                    `<input type="number" class="hs-radius" value="${hs.radius}" data-idx="${idx}" data-field="radius" min="20" max="300">` +
+                    `<span style="color:#64748b;font-size:10px;">强度</span>` +
+                    `<input type="number" class="hs-power" value="${hs.power.toFixed(3)}" data-idx="${idx}" data-field="power" min="0.001" max="0.5" step="0.001">` +
+                    `<button class="btn-small" data-idx="${idx}" data-action="delete">✕</button>`;
                 container.appendChild(item);
             });
-            container.querySelectorAll('.hs-toggle').forEach(cb => {
-                cb.addEventListener('change', (e) => {
-                    heatSources[parseInt(e.target.dataset.idx)].enabled = e.target.checked;
-                    render();
-                });
-            });
-            container.querySelectorAll('.hs-radius, .hs-power').forEach(input => {
-                input.addEventListener('input', (e) => {
-                    const idx = parseInt(e.target.dataset.idx);
-                    const val = parseFloat(e.target.value);
-                    if (!isNaN(val) && val > 0) { heatSources[idx][e.target.dataset.field] = val; render(); }
-                });
-            });
-            container.querySelectorAll('[data-action="delete"]').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    heatSources.splice(parseInt(e.target.dataset.idx), 1);
+            container.querySelectorAll('.hs-toggle').forEach(cb => { cb.addEventListener('change', (e) => { heatSources[parseInt(
+                        e.target.dataset.idx)].enabled = e.target.checked;
+                    render(); }); });
+            container.querySelectorAll('.hs-radius,.hs-power').forEach(input => { input.addEventListener('input', (e) => {
+                    const idx = parseInt(e.target.dataset.idx),
+                        val = parseFloat(e.target.value); if (!isNaN(val) && val > 0) { heatSources[idx][e
+                            .target.dataset.field] = val;
+                        render(); } }); });
+            container.querySelectorAll('[data-action="delete"]').forEach(btn => { btn.addEventListener('click', (e) => { heatSources
+                    .splice(parseInt(e.target.dataset.idx), 1);
                     refreshHeatSourceUI();
-                    render();
-                });
-            });
+                    render(); }); });
         }
 
-        function findHeatSourceAt(x, y) {
-            for (let i = heatSources.length - 1; i >= 0; i--) {
-                const dx = x - heatSources[i].x;
-                const dy = y - heatSources[i].y;
-                if (dx * dx + dy * dy < 100) return i;
-            }
-            return -1;
-        }
+        function findHeatSourceAt(x, y) { for (let i = heatSources.length - 1; i >= 0; i--) { const dx = x - heatSources[i].x,
+                dy = y - heatSources[i].y; if (dx * dx + dy * dy < 100) return i; } return -1; }
 
         canvas.addEventListener('mousedown', (e) => {
             const rect = canvas.getBoundingClientRect();
             const x = (e.clientX - rect.left) * (WIDTH / rect.width);
             const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
-
             if (heatMode) {
                 const hsIdx = findHeatSourceAt(x, y);
-                if (hsIdx >= 0) {
-                    draggingHeatSource = hsIdx;
+                if (hsIdx >= 0) { draggingHeatSource = hsIdx;
                     dragHSOffsetX = heatSources[hsIdx].x - x;
-                    dragHSOffsetY = heatSources[hsIdx].y - y;
-                } else {
-                    heatSources.push({ x, y, radius: 80, power: 0.02, enabled: true });
+                    dragHSOffsetY = heatSources[hsIdx].y - y; } else { heatSources.push({ x, y, radius: 80, power: 0.02,
+                        enabled: true });
                     refreshHeatSourceUI();
-                    render();
-                }
+                    render(); }
                 return;
             }
-
+            if (regionMode) { isDragging = true;
+                dragStart = { x, y };
+                dragCurrent = { x, y };
+                hasMovedSignificantly = false;
+                render(); return; }
             isDragging = true;
             dragStart = { x, y };
             dragCurrent = { x, y };
@@ -1676,58 +2028,49 @@
             const rect = canvas.getBoundingClientRect();
             const x = (e.clientX - rect.left) * (WIDTH / rect.width);
             const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
-
-            if (draggingHeatSource !== null) {
-                heatSources[draggingHeatSource].x = x + dragHSOffsetX;
+            if (draggingHeatSource !== null) { heatSources[draggingHeatSource].x = x + dragHSOffsetX;
                 heatSources[draggingHeatSource].y = y + dragHSOffsetY;
-                render();
-                return;
-            }
-
-            if (isDragging) {
-                const dx = x - dragStart.x;
-                const dy = y - dragStart.y;
-                if (Math.sqrt(dx * dx + dy * dy) > DRAG_THRESHOLD) {
-                    hasMovedSignificantly = true;
-                }
+                render(); return; }
+            if (isDragging && regionMode) { const dx = x - dragStart.x,
+                    dy = y - dragStart.y; if (Math.sqrt(dx * dx + dy * dy) > 3) hasMovedSignificantly = true;
                 dragCurrent = { x, y };
-                render();
-            }
+                render(); return; }
+            if (isDragging) { const dx = x - dragStart.x,
+                    dy = y - dragStart.y; if (Math.sqrt(dx * dx + dy * dy) > DRAG_THRESHOLD) hasMovedSignificantly = true;
+                dragCurrent = { x, y };
+                render(); }
         });
 
         canvas.addEventListener('mouseup', (e) => {
-            if (draggingHeatSource !== null) {
-                refreshHeatSourceUI();
+            if (draggingHeatSource !== null) { refreshHeatSourceUI();
                 draggingHeatSource = null;
-                render();
-                return;
+                render(); return; }
+            if (isDragging && regionMode && dragStart && dragCurrent) {
+                regionRect = { x1: dragStart.x, y1: dragStart.y, x2: dragCurrent.x, y2: dragCurrent.y };
+                updateRegionStats();
+                isDragging = false;
+                dragStart = null;
+                dragCurrent = null;
+                hasMovedSignificantly = false;
+                render(); return;
             }
-
             if (isDragging && dragStart) {
                 const rect = canvas.getBoundingClientRect();
                 const x = (e.clientX - rect.left) * (WIDTH / rect.width);
                 const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
                 dragCurrent = { x, y };
-
                 if (hasMovedSignificantly) {
-                    const vx = (dragCurrent.x - dragStart.x) * 0.05;
-                    const vy = (dragCurrent.y - dragStart.y) * 0.05;
-                    addAtom(dragStart.x, dragStart.y, vx, vy);
+                    addAtom(dragStart.x, dragStart.y, (dragCurrent.x - dragStart.x) * 0.05, (dragCurrent.y - dragStart.y) *
+                        0.05);
                 } else {
-                    if (!running && !heatMode) {
+                    if (!running && viewingSnapshotIdx < 0 && !heatMode && !regionMode) {
                         const atomIdx = findAtomAt(dragStart.x, dragStart.y);
-                        if (atomIdx >= 0) {
-                            selectAtom(atomIdx);
-                        } else {
-                            addAtom(dragStart.x, dragStart.y, 0, 0);
-                            deselectedAtom();
-                        }
-                    } else {
-                        addAtom(dragStart.x, dragStart.y, 0, 0);
-                        deselectedAtom();
-                    }
+                        if (atomIdx >= 0) selectAtom(atomIdx);
+                        else { addAtom(dragStart.x, dragStart.y, 0, 0);
+                            deselectedAtom(); }
+                    } else { addAtom(dragStart.x, dragStart.y, 0, 0);
+                        deselectedAtom(); }
                 }
-
                 isDragging = false;
                 dragStart = null;
                 dragCurrent = null;
@@ -1736,45 +2079,25 @@
             }
         });
 
-        canvas.addEventListener('mouseleave', () => {
-            if (draggingHeatSource !== null) {
-                refreshHeatSourceUI();
-                draggingHeatSource = null;
-            }
-            if (isDragging) {
+        canvas.addEventListener('mouseleave', () => { if (draggingHeatSource !== null) { refreshHeatSourceUI();
+                draggingHeatSource = null; } if (isDragging) { if (regionMode && dragStart && dragCurrent) { regionRect = {
+                        x1: dragStart.x, y1: dragStart.y, x2: dragCurrent.x, y2: dragCurrent.y };
+                    updateRegionStats(); }
                 isDragging = false;
                 dragStart = null;
                 dragCurrent = null;
                 hasMovedSignificantly = false;
-                render();
-            }
-        });
+                render(); } });
 
         function saveState() {
-            const data = {
-                version: 3,
-                running: running,
-                atoms: atoms,
-                heatSources: heatSources,
-                parameters: {
-                    temperature: params.temperature,
-                    friction: params.friction,
-                    dt: params.dt,
-                    epsilon: params.epsilon,
-                    sigma: params.sigma,
-                    rc: params.rc,
-                },
-                history: history,
-                stepCounter: stepCounter,
-                energies: energies,
-                currentTemperature: currentTemperature,
-            };
+            const data = { version: 4, running, atoms, heatSources, parameters: { ...params }, history, stepCounter,
+                energies, currentTemperature, snapshots, viewingSnapshotIdx, nextSnapshotAt, savedForSnapshot };
             const json = JSON.stringify(data, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `md-simulation-${Date.now()}.json`;
+            a.download = 'md-sim-' + Date.now() + '.json';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -1786,41 +2109,15 @@
             reader.onload = (event) => {
                 try {
                     const data = JSON.parse(event.target.result);
-                    if (data.version >= 2) {
-                        restoreState(data);
-                    } else if (data.version === 1) {
-                        restoreState({
-                            version: 3,
-                            running: false,
-                            atoms: data.atoms || [],
-                            heatSources: data.heatSource ? [data.heatSource] : [],
-                            parameters: {
-                                temperature: data.parameters?.temperature ?? 1.0,
-                                friction: data.parameters?.friction ?? 0.0,
-                                dt: data.parameters?.dt ?? 0.002,
-                                epsilon: params.epsilon,
-                                sigma: params.sigma,
-                                rc: params.rc,
-                            },
-                            history: { kinetic: [], potential: [], total: [], temperature: [] },
-                            stepCounter: 0,
-                            energies: { kinetic: 0, potential: 0, total: 0 },
-                            currentTemperature: 0,
-                        });
-                    }
-                } catch (err) {
-                    alert('加载失败：' + err.message);
-                }
+                    restoreState(data);
+                } catch (err) { alert('加载失败：' + err.message); }
             };
             reader.readAsText(file);
         }
 
-        function loadState(e) {
-            const file = e.target.files[0];
-            if (!file) return;
+        function loadState(e) { const file = e.target.files[0]; if (!file) return;
             loadStateFile(file);
-            e.target.value = '';
-        }
+            e.target.value = ''; }
 
         function restoreState(data) {
             atoms = data.atoms || [];
@@ -1831,150 +2128,149 @@
             stepCounter = data.stepCounter ?? 0;
             latestForces = [];
             selectedAtomIdx = null;
-
-            if (data.parameters) {
-                params.temperature = data.parameters.temperature ?? 1.0;
+            regionRect = null;
+            snapshots = data.snapshots || [];
+            viewingSnapshotIdx = data.viewingSnapshotIdx ?? -1;
+            nextSnapshotAt = data.nextSnapshotAt ?? (stepCounter + SNAPSHOT_INTERVAL);
+            savedForSnapshot = data.savedForSnapshot || null;
+            if (data.parameters) { params.temperature = data.parameters.temperature ?? 1.0;
                 params.friction = data.parameters.friction ?? 0.0;
                 params.dt = data.parameters.dt ?? 0.002;
                 params.epsilon = data.parameters.epsilon ?? 5.0;
                 params.sigma = data.parameters.sigma ?? 18;
-                params.rc = data.parameters.rc ?? 2.5;
-            }
-
+                params.rc = data.parameters.rc ?? 2.5; }
             document.getElementById('temperature').value = Math.round(params.temperature * 100);
             document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
             document.getElementById('friction').value = Math.round(params.friction * 1000);
             document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
-
             heatMode = false;
-            document.getElementById('btnHeatMode').textContent = '🔥 热源模式：关';
-            document.getElementById('btnHeatMode').classList.remove('active');
-            canvas.style.cursor = 'crosshair';
-
+            regionMode = false;
+            updateModeButtonStyles();
+            if (viewingSnapshotIdx >= 0 && viewingSnapshotIdx < snapshots.length) {
+                const snap = snapshots[viewingSnapshotIdx];
+                atoms = deepCopyAtoms(snap.atoms);
+                heatSources = deepCopyHS(snap.heatSources);
+                energies = { ...snap.energies };
+                currentTemperature = snap.currentTemperature;
+                stepCounter = snap.stepCounter;
+                history = { kinetic: [...snap.history.kinetic], potential: [...snap.history.potential], total: [...snap.history
+                        .total
+                    ], temperature: [...snap.history.temperature] };
+            }
             refreshHeatSourceUI();
+            updateInspectorPanel();
+            updateRegionStats();
             updateEnergyDisplay();
             updateAtomCount();
-            updateInspectorPanel();
             drawChart();
-
-            const wasRunning = data.running === true;
-            if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-
-            if (wasRunning) {
-                setPlayButtonState(true);
-                animate();
-            } else {
-                setPlayButtonState(false);
-            }
-
+            updateTimelineUI();
+            recomputeObservables();
+            const wasRunning = data.running === true && viewingSnapshotIdx < 0;
+            if (animationId) { cancelAnimationFrame(animationId);
+                animationId = null; }
+            setPlayButtonState(wasRunning);
+            if (wasRunning) animate();
             render();
         }
 
         function serializeState() {
             return {
-                version: 3,
-                running: running,
+                version: 4,
+                running,
                 atoms: JSON.parse(JSON.stringify(atoms)),
                 heatSources: JSON.parse(JSON.stringify(heatSources)),
                 parameters: { ...params },
                 history: JSON.parse(JSON.stringify(history)),
-                stepCounter: stepCounter,
+                stepCounter,
                 energies: { ...energies },
-                currentTemperature: currentTemperature,
+                currentTemperature,
+                snapshots: JSON.parse(JSON.stringify(snapshots)),
+                viewingSnapshotIdx,
+                nextSnapshotAt,
+                savedForSnapshot,
             };
         }
 
-        function saveCustomPreset() {
-            const name = prompt('请输入预设名称：');
-            if (!name || !name.trim()) return;
+        function doSaveCustomPreset() {
+            const name = document.getElementById('presetName').value.trim();
+            if (!name) { alert('请输入预设名称'); return; }
+            const group = document.getElementById('presetGroup').value;
+            const note = document.getElementById('presetNote').value.trim();
             const data = serializeState();
-            data.name = name.trim();
+            data.name = name;
+            data.group = group;
+            data.note = note;
             data.createdAt = Date.now();
-            const key = 'md_preset_' + name.trim();
-            try {
-                localStorage.setItem(key, JSON.stringify(data));
+            const key = 'md_preset_' + name;
+            try { localStorage.setItem(key, JSON.stringify(data));
                 refreshCustomPresetUI();
-            } catch (e) {
-                alert('保存失败：存储空间不足，请删除旧预设后重试。');
-            }
+                document.getElementById('presetDialog').classList.remove('show');
+                document.getElementById('presetName').value = '';
+                document.getElementById('presetNote').value = ''; } catch (e) { alert('保存失败：存储空间不足'); }
         }
 
         function loadCustomPreset(key) {
-            try {
-                const raw = localStorage.getItem(key);
-                if (!raw) return;
-                const data = JSON.parse(raw);
-                if (data.version >= 2 && data.atoms) {
-                    restoreState(data);
-                }
-            } catch (e) {
-                alert('加载预设失败。');
-            }
+            try { const raw = localStorage.getItem(key); if (!raw) return;
+                const data = JSON.parse(raw); if (data.atoms) restoreState(data); } catch (e) { alert('加载预设失败'); }
         }
 
-        function deleteCustomPreset(key) {
-            if (!confirm('确认删除此预设？')) return;
+        function deleteCustomPreset(key) { if (!confirm('确认删除？')) return;
             localStorage.removeItem(key);
-            refreshCustomPresetUI();
-        }
+            refreshCustomPresetUI(); }
 
         function refreshCustomPresetUI() {
             const container = document.getElementById('customPresetList');
+            const filter = document.getElementById('presetGroupFilter').value;
             container.innerHTML = '';
             const keys = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                const k = localStorage.key(i);
-                if (k.startsWith('md_preset_')) keys.push(k);
-            }
-            keys.sort((a, b) => {
-                try {
-                    const da = JSON.parse(localStorage.getItem(a));
-                    const db = JSON.parse(localStorage.getItem(b));
-                    return (db.createdAt || 0) - (da.createdAt || 0);
-                } catch (e) { return 0; }
-            });
-
-            if (keys.length === 0) {
-                container.innerHTML = '<div style="font-size:11px;color:#64748b;text-align:center;padding:6px;">暂无自定义预设</div>';
-                return;
-            }
-
+            for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith('md_preset_'))
+            keys.push(k); }
+            keys.sort((a, b) => { try { const da = JSON.parse(localStorage.getItem(a)),
+                        db = JSON.parse(localStorage.getItem(b)); return (db.createdAt || 0) - (da.createdAt || 0); } catch (
+                    e) { return 0; } });
+            let shown = 0;
             keys.forEach(key => {
                 try {
                     const data = JSON.parse(localStorage.getItem(key));
-                    const name = data.name || key.replace('md_preset_', '');
-                    const atomCount = data.atoms ? data.atoms.length : 0;
+                    if (!data.atoms) return;
+                    const g = data.group || '默认';
+                    if (filter !== 'all' && filter !== g) return;
+                    shown++;
+                    const name = data.name || key.replace('md_preset_', ''),
+                        atomCount = data.atoms.length,
+                        hsCount = (data.heatSources || []).length,
+                        wasRunning = data.running ? '运行中' : '已暂停',
+                        time = data.createdAt ? new Date(data.createdAt).toLocaleString('zh-CN') : '-',
+                        note = data.note || '';
                     const item = document.createElement('div');
                     item.className = 'custom-preset-item';
-                    item.innerHTML = `
-                        <span class="cp-name">${escapeHtml(name)}</span>
-                        <span class="cp-info">${atomCount} 原子</span>
-                        <button class="btn-small green" data-load="${escapeHtml(key)}">加载</button>
-                        <button class="btn-small" data-del="${escapeHtml(key)}">✕</button>
-                    `;
+                    item.innerHTML =
+                        `<div class="cp-header"><span class="cp-name">${esc(name)}</span><span class="cp-group-tag">${esc(g)}</span></div>` +
+                        `<div class="cp-meta"><span>${atomCount}原子</span><span>${hsCount}热源</span><span>${wasRunning}</span></div>` +
+                        (note ? `<div class="cp-note">${esc(note)}</div>` : '') +
+                        `<div class="cp-meta" style="font-size:9px;">${time}</div>` +
+                        `<div class="cp-actions"><button class="btn-small green" data-load="${esc(key)}">加载</button><button class="btn-small" data-del="${esc(key)}">✕</button></div>`;
                     container.appendChild(item);
-                } catch (e) { /* skip corrupt entries */ }
+                } catch (e) {}
             });
-
-            container.querySelectorAll('[data-load]').forEach(btn => {
-                btn.addEventListener('click', () => loadCustomPreset(btn.dataset.load));
-            });
-            container.querySelectorAll('[data-del]').forEach(btn => {
-                btn.addEventListener('click', () => deleteCustomPreset(btn.dataset.del));
-            });
+            if (shown === 0) container.innerHTML =
+                '<div style="font-size:10px;color:#64748b;text-align:center;padding:4px;">暂无自定义预设</div>';
+            container.querySelectorAll('[data-load]').forEach(btn => { btn.addEventListener('click', () => loadCustomPreset(btn
+                    .dataset.load)); });
+            container.querySelectorAll('[data-del]').forEach(btn => { btn.addEventListener('click', () => deleteCustomPreset(btn
+                    .dataset.del)); });
         }
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
+        function esc(str) { const div = document.createElement('div');
+            div.textContent = str; return div.innerHTML; }
 
         initUI();
         updateAtomCount();
         updateEnergyDisplay();
         updateInspectorPanel();
+        updateRegionStats();
         drawChart();
+        updateTimelineUI();
         render();
     </script>
 </body>
