@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分子动力学模拟器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #f1f5f9;
+        }
+
+        .container {
+            display: flex;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: calc(100vh - 40px);
+        }
+
+        .canvas-container {
+            flex: 1;
+            background: #0b1220;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #canvas {
+            border-radius: 8px;
+            cursor: crosshair;
+            background: #0a101f;
+        }
+
+        .control-panel {
+            width: 320px;
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .control-panel h1 {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+
+        .section:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .atom-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .atom-type-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #334155;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .atom-type-btn:hover {
+            background: #475569;
+        }
+
+        .atom-type-btn.active {
+            border-color: #60a5fa;
+            background: #3b82f620;
+        }
+
+        .atom-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .atom-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .control-value {
+            font-weight: 600;
+            color: #60a5fa;
+            font-family: monospace;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #334155;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #3b82f6;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #60a5fa;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .button-group.full {
+            grid-template-columns: 1fr;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #475569;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #64748b;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .energy-display {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 16px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .energy-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .energy-label {
+            color: #94a3b8;
+        }
+
+        .energy-value {
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .energy-value.kinetic {
+            color: #fbbf24;
+        }
+
+        .energy-value.potential {
+            color: #a78bfa;
+        }
+
+        .energy-value.total {
+            color: #34d399;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: block;
+            text-align: center;
+            padding: 10px 16px;
+            background: #475569;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .file-label:hover {
+            background: #64748b;
+        }
+
+        .instructions {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #94a3b8;
+        }
+
+        .instructions ul {
+            margin-top: 8px;
+            padding-left: 16px;
+        }
+
+        .instructions li {
+            margin-bottom: 4px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            .control-panel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="canvas-container">
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </div>
+        <div class="control-panel">
+            <h1>分子动力学</h1>
+            <p class="subtitle">二维 L-J 势能模拟器</p>
+
+            <div class="section">
+                <div class="section-title">选择原子类型</div>
+                <div class="atom-types" id="atomTypes">
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">模拟控制</div>
+                <div class="button-group">
+                    <button id="btnPlay" class="btn-primary">▶ 运行</button>
+                    <button id="btnStep" class="btn-secondary">⏭ 单步</button>
+                </div>
+                <div class="button-group full" style="margin-top: 10px;">
+                    <button id="btnClear" class="btn-danger">🗑 清除所有</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">参数调节</div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>温度</span>
+                        <span class="control-value"><span id="tempValue">1.00</span></span>
+                    </div>
+                    <input type="range" id="temperature" min="0" max="200" step="0.1" value="100">
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>摩擦力</span>
+                        <span class="control-value"><span id="frictionValue">0.010</span></span>
+                    </div>
+                    <input type="range" id="friction" min="0" max="50" step="0.001" value="10">
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">热源</div>
+                <div class="control-group checkbox-group">
+                    <input type="checkbox" id="heatEnabled" checked>
+                    <label for="heatEnabled">启用左下角热源</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">能量统计</div>
+                <div class="energy-display">
+                    <div class="energy-row">
+                        <span class="energy-label">动能 (E<sub>k</sub>):</span>
+                        <span class="energy-value kinetic" id="kineticEnergy">0.000</span>
+                    </div>
+                    <div class="energy-row">
+                        <span class="energy-label">势能 (E<sub>p</sub>):</span>
+                        <span class="energy-value potential" id="potentialEnergy">0.000</span>
+                    </div>
+                    <div class="energy-row" style="border-top: 1px solid #334155; padding-top: 8px; margin-top: 4px;">
+                        <span class="energy-label">总能量 (E):</span>
+                        <span class="energy-value total" id="totalEnergy">0.000</span>
+                    </div>
+                    <div class="energy-row">
+                        <span class="energy-label">原子数:</span>
+                        <span class="energy-value" id="atomCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">状态保存</div>
+                <div class="button-group">
+                    <button id="btnSave" class="btn-secondary">💾 保存</button>
+                    <label for="fileLoad" class="file-label">📂 加载</label>
+                    <input type="file" id="fileLoad" class="file-input" accept=".json">
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">使用说明</div>
+                <div class="instructions">
+                    <ul>
+                        <li>点击画布放置原子</li>
+                        <li>拖拽绘制矢量设置初始速度</li>
+                        <li>温度调节缩放所有速度</li>
+                        <li>摩擦力使系统逐渐减速</li>
+                        <li>左下角圆形区域是热源</li>
+                        <li>离开边缘原子从对侧出现</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+
+        const atomTypes = [
+            { name: '轻原子', mass: 1.0, radius: 6, color: '#3b82f6', type: 'light' },
+            { name: '中原子', mass: 4.0, radius: 9, color: '#10b981', type: 'medium' },
+            { name: '重原子', mass: 9.0, radius: 12, color: '#ef4444', type: 'heavy' },
+            { name: '超大原子', mass: 16.0, radius: 16, color: '#f59e0b', type: 'xl' },
+        ];
+
+        let selectedType = atomTypes[0];
+        let atoms = [];
+        let running = false;
+        let animationId = null;
+
+        let params = {
+            temperature: 1.0,
+            friction: 0.01,
+            dt: 0.002,
+            epsilon: 5.0,
+            sigma: 18,
+            rc: 2.5,
+        };
+
+        let heatSource = {
+            x: 120,
+            y: HEIGHT - 120,
+            radius: 80,
+            power: 0.02,
+            enabled: true,
+        };
+
+        let isDragging = false;
+        let dragStart = null;
+        let dragCurrent = null;
+        let hasMovedSignificantly = false;
+        const DRAG_THRESHOLD = 4;
+
+        let energies = {
+            kinetic: 0,
+            potential: 0,
+            total: 0,
+        };
+
+        const atomTypesContainer = document.getElementById('atomTypes');
+        atomTypes.forEach((type, idx) => {
+            const btn = document.createElement('div');
+            btn.className = `atom-type-btn ${idx === 0 ? 'active' : ''}`;
+            btn.innerHTML = `
+                <div class="atom-preview" style="background: ${type.color}"></div>
+                <span class="atom-label">${type.name}</span>
+            `;
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.atom-type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedType = type;
+            });
+            atomTypesContainer.appendChild(btn);
+        });
+
+        function getDistanceSquared(a1, a2) {
+            let dx = a1.x - a2.x;
+            let dy = a1.y - a2.y;
+
+            if (Math.abs(dx) > WIDTH / 2) {
+                dx = dx - WIDTH * Math.sign(dx);
+            }
+            if (Math.abs(dy) > HEIGHT / 2) {
+                dy = dy - HEIGHT * Math.sign(dy);
+            }
+            return dx * dx + dy * dy;
+        }
+
+        function wrapPosition(atom) {
+            if (atom.x < 0) atom.x += WIDTH;
+            else if (atom.x >= WIDTH) atom.x -= WIDTH;
+            if (atom.y < 0) atom.y += HEIGHT;
+            else if (atom.y >= HEIGHT) atom.y -= HEIGHT;
+        }
+
+        function lennardJonesForce(r) {
+            const r2 = r * r;
+            const r6 = r2 * r2 * r2;
+            const r12 = r6 * r6;
+            const s6 = params.sigma ** 6;
+            const s12 = s6 * s6;
+            const force = 24 * params.epsilon * (2 * s12 / r12 - s6 / r6) / r;
+            return force;
+        }
+
+        function lennardJonesPotential(r) {
+            const r6 = r ** 6;
+            const r12 = r6 * r6;
+            const s6 = params.sigma ** 6;
+            const s12 = s6 * s6;
+            const rc = params.rc;
+            const rc6 = rc ** 6;
+            const rc12 = rc6 * rc6;
+            const shift = 4 * params.epsilon * (s12 / rc12 - s6 / rc6);
+            return 4 * params.epsilon * (s12 / r12 - s6 / r6) - shift;
+        }
+
+        function computeForcesAndPotential() {
+            const forces = atoms.map(() => ({ fx: 0, fy: 0 }));
+            let potential = 0;
+            const rc2 = (params.rc * params.sigma) ** 2;
+
+            for (let i = 0; i < atoms.length; i++) {
+                for (let j = i + 1; j < atoms.length; j++) {
+                    let dx = atoms[i].x - atoms[j].x;
+                    let dy = atoms[i].y - atoms[j].y;
+
+                    if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
+                    if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
+
+                    const r2 = dx * dx + dy * dy;
+
+                    if (r2 < rc2 && r2 > 0) {
+                        const r = Math.sqrt(r2);
+                        const f = lennardJonesForce(r);
+                        const fx = f * dx / r;
+                        const fy = f * dy / r;
+
+                        forces[i].fx += fx;
+                        forces[i].fy += fy;
+                        forces[j].fx -= fx;
+                        forces[j].fy -= fy;
+
+                        potential += lennardJonesPotential(r);
+                    }
+                }
+            }
+
+            return { forces, potential };
+        }
+
+        function scaleTemperature() {
+            if (atoms.length === 0) return;
+            let currentTemp = 0;
+            for (const atom of atoms) {
+                currentTemp += atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
+            }
+            currentTemp /= (2 * atoms.length);
+            if (currentTemp > 0 && params.temperature > 0) {
+                const target = params.temperature;
+                const tau = 0.02;
+                const scale = Math.sqrt(1 + (target / Math.max(currentTemp, 0.001) - 1) * tau);
+                for (const atom of atoms) {
+                    atom.vx *= scale;
+                    atom.vy *= scale;
+                }
+            }
+        }
+
+        function applyHeatSource() {
+            if (!heatSource.enabled) return;
+            for (const atom of atoms) {
+                const dx = atom.x - heatSource.x;
+                const dy = atom.y - heatSource.y;
+                const dist2 = dx * dx + dy * dy;
+                if (dist2 < heatSource.radius * heatSource.radius) {
+                    atom.vx *= 1 + heatSource.power;
+                    atom.vy *= 1 + heatSource.power;
+                }
+            }
+        }
+
+        function applyFriction() {
+            for (const atom of atoms) {
+                atom.vx *= (1 - params.friction);
+                atom.vy *= (1 - params.friction);
+            }
+        }
+
+        function step() {
+            if (atoms.length === 0) {
+                render();
+                return;
+            }
+
+            scaleTemperature();
+
+            const { forces, potential } = computeForcesAndPotential();
+            let kinetic = 0;
+
+            for (let i = 0; i < atoms.length; i++) {
+                const atom = atoms[i];
+                const f = forces[i];
+
+                atom.x += atom.vx * params.dt + 0.5 * (f.fx / atom.mass) * params.dt * params.dt;
+                atom.y += atom.vy * params.dt + 0.5 * (f.fy / atom.mass) * params.dt * params.dt;
+
+                atom.vx += 0.5 * (f.fx / atom.mass) * params.dt;
+                atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
+
+                wrapPosition(atom);
+
+                kinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
+            }
+
+            applyFriction();
+            applyHeatSource();
+
+            const { forces: forces2 } = computeForcesAndPotential();
+
+            for (let i = 0; i < atoms.length; i++) {
+                const atom = atoms[i];
+                const f = forces2[i];
+                atom.vx += 0.5 * (f.fx / atom.mass) * params.dt;
+                atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
+            }
+
+            energies.kinetic = kinetic;
+            energies.potential = potential;
+
+            let finalKinetic = 0;
+            for (const atom of atoms) {
+                finalKinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
+            }
+            energies.kinetic = finalKinetic;
+            energies.total = finalKinetic + potential;
+
+            updateEnergyDisplay();
+            render();
+        }
+
+        function animate() {
+            if (running) {
+                step();
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+
+        function render() {
+            ctx.fillStyle = '#0a101f';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+            if (heatSource.enabled) {
+                const gradient = ctx.createRadialGradient(
+                    heatSource.x, heatSource.y, 0,
+                    heatSource.x, heatSource.y, heatSource.radius
+                );
+                gradient.addColorStop(0, 'rgba(251, 191, 36, 0.3)');
+                gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(heatSource.x, heatSource.y, heatSource.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(251, 191, 36, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+
+            for (const atom of atoms) {
+                const gradient = ctx.createRadialGradient(
+                    atom.x - atom.radius * 0.3, atom.y - atom.radius * 0.3, 0,
+                    atom.x, atom.y, atom.radius
+                );
+                gradient.addColorStop(0, lightenColor(atom.color, 30));
+                gradient.addColorStop(1, atom.color);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(atom.x, atom.y, atom.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = lightenColor(atom.color, 50);
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+
+            if (isDragging && dragStart && dragCurrent) {
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.8)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(dragStart.x, dragStart.y);
+                ctx.lineTo(dragCurrent.x, dragCurrent.y);
+                ctx.stroke();
+
+                const angle = Math.atan2(dragCurrent.y - dragStart.y, dragCurrent.x - dragStart.x);
+                const length = Math.sqrt(
+                    (dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2
+                );
+                const arrowLength = Math.min(10, length * 0.3);
+                ctx.beginPath();
+                ctx.moveTo(dragCurrent.x, dragCurrent.y);
+                ctx.lineTo(
+                    dragCurrent.x - arrowLength * Math.cos(angle - Math.PI / 6),
+                    dragCurrent.y - arrowLength * Math.sin(angle - Math.PI / 6)
+                );
+                ctx.moveTo(dragCurrent.x, dragCurrent.y);
+                ctx.lineTo(
+                    dragCurrent.x - arrowLength * Math.cos(angle + Math.PI / 6),
+                    dragCurrent.y - arrowLength * Math.sin(angle + Math.PI / 6)
+                );
+                ctx.stroke();
+            }
+        }
+
+        function lightenColor(color, percent) {
+            const num = parseInt(color.replace('#', ''), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        function addAtom(x, y, vx = 0, vy = 0) {
+            const overlapping = atoms.some(atom => {
+                const dx = atom.x - x;
+                const dy = atom.y - y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                return dist < atom.radius + selectedType.radius;
+            });
+            if (!overlapping) {
+                atoms.push({
+                    x,
+                    y,
+                    vx,
+                    vy,
+                    mass: selectedType.mass,
+                    radius: selectedType.radius,
+                    color: selectedType.color,
+                    type: selectedType.type,
+                });
+                updateAtomCount();
+                return true;
+            }
+            return false;
+        }
+
+        function updateEnergyDisplay() {
+            document.getElementById('kineticEnergy').textContent = energies.kinetic.toFixed(3);
+            document.getElementById('potentialEnergy').textContent = energies.potential.toFixed(3);
+            document.getElementById('totalEnergy').textContent = energies.total.toFixed(3);
+        }
+
+        function updateAtomCount() {
+            document.getElementById('atomCount').textContent = atoms.length;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (WIDTH / rect.width);
+            const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
+            isDragging = true;
+            dragStart = { x, y };
+            dragCurrent = { x, y };
+            hasMovedSignificantly = false;
+            render();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX - rect.left) * (WIDTH / rect.width);
+                const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
+                const dx = x - dragStart.x;
+                const dy = y - dragStart.y;
+                if (Math.sqrt(dx * dx + dy * dy) > DRAG_THRESHOLD) {
+                    hasMovedSignificantly = true;
+                }
+                dragCurrent = { x, y };
+                render();
+            }
+        });
+
+        canvas.addEventListener('mouseup', (e) => {
+            if (isDragging && dragStart) {
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX - rect.left) * (WIDTH / rect.width);
+                const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
+                dragCurrent = { x, y };
+
+                if (hasMovedSignificantly) {
+                    const vx = (dragCurrent.x - dragStart.x) * 0.05;
+                    const vy = (dragCurrent.y - dragStart.y) * 0.05;
+                    addAtom(dragStart.x, dragStart.y, vx, vy);
+                } else {
+                    addAtom(dragStart.x, dragStart.y, 0, 0);
+                }
+
+                isDragging = false;
+                dragStart = null;
+                dragCurrent = null;
+                hasMovedSignificantly = false;
+                render();
+            }
+        });
+
+        document.getElementById('btnPlay').addEventListener('click', () => {
+            running = !running;
+            const btn = document.getElementById('btnPlay');
+            if (running) {
+                btn.textContent = '⏸ 暂停';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                animate();
+            } else {
+                btn.textContent = '▶ 运行';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-primary');
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+            }
+        });
+
+        document.getElementById('btnStep').addEventListener('click', () => {
+            if (!running) {
+                step();
+            }
+        });
+
+        document.getElementById('btnClear').addEventListener('click', () => {
+            atoms = [];
+            energies.kinetic = 0;
+            energies.potential = 0;
+            energies.total = 0;
+            updateEnergyDisplay();
+            updateAtomCount();
+            render();
+        });
+
+        document.getElementById('temperature').addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value) / 100;
+            params.temperature = value;
+            document.getElementById('tempValue').textContent = value.toFixed(2);
+        });
+
+        document.getElementById('friction').addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value) / 1000;
+            params.friction = value;
+            document.getElementById('frictionValue').textContent = value.toFixed(3);
+        });
+
+        document.getElementById('heatEnabled').addEventListener('change', (e) => {
+            heatSource.enabled = e.target.checked;
+            render();
+        });
+
+        document.getElementById('btnSave').addEventListener('click', () => {
+            const data = {
+                version: 1,
+                atoms: atoms,
+                heatSource: heatSource,
+                parameters: {
+                    temperature: params.temperature,
+                    friction: params.friction,
+                    dt: params.dt,
+                },
+            };
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `md-simulation-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('fileLoad').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    if (data.version === 1) {
+                        atoms = data.atoms || [];
+                        if (data.heatSource) {
+                            Object.assign(heatSource, data.heatSource);
+                            document.getElementById('heatEnabled').checked = heatSource.enabled;
+                        }
+                        if (data.parameters) {
+                            params.temperature = data.parameters.temperature || params.temperature;
+                            params.friction = data.parameters.friction || params.friction;
+                            document.getElementById('temperature').value = params.temperature * 100;
+                            document.getElementById('friction').value = params.friction * 1000;
+                            document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
+                            document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
+                        }
+                        updateAtomCount();
+                        render();
+                    }
+                } catch (err) {
+                    alert('加载失败：' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        updateAtomCount();
+        updateEnergyDisplay();
+        render();
+    </script>
+</body>
+</html>
