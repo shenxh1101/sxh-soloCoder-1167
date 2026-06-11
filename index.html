@@ -18,24 +18,31 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
             color: #f1f5f9;
         }
 
         .container {
             display: flex;
-            gap: 24px;
-            max-width: 1400px;
+            gap: 20px;
+            max-width: 1440px;
             margin: 0 auto;
-            height: calc(100vh - 40px);
+            height: calc(100vh - 32px);
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
         }
 
         .canvas-container {
-            flex: 1;
             background: #0b1220;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -48,23 +55,83 @@
             background: #0a101f;
         }
 
+        .chart-container {
+            background: #0b1220;
+            border-radius: 14px;
+            padding: 12px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .chart-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 14px;
+            font-size: 11px;
+        }
+
+        .chart-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.kinetic {
+            background: #fbbf24;
+        }
+
+        .legend-dot.potential {
+            background: #a78bfa;
+        }
+
+        .legend-dot.total {
+            background: #34d399;
+        }
+
+        .legend-dot.temp {
+            background: #f472b6;
+        }
+
+        #chartCanvas {
+            border-radius: 4px;
+            background: #080d18;
+        }
+
         .control-panel {
-            width: 320px;
+            width: 370px;
             background: #1e293b;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 14px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 18px;
+            padding: 20px;
+            flex-shrink: 0;
         }
 
         .control-panel h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 8px;
             background: linear-gradient(90deg, #60a5fa, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -72,15 +139,14 @@
         }
 
         .subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: #94a3b8;
             text-align: center;
-            margin-bottom: 12px;
         }
 
         .section {
             border-top: 1px solid #334155;
-            padding-top: 20px;
+            padding-top: 16px;
         }
 
         .section:first-child {
@@ -89,30 +155,58 @@
         }
 
         .section-title {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
-            color: #cbd5e1;
-            margin-bottom: 12px;
+            color: #94a3b8;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .preset-btn {
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #334155;
+            border: 1px solid transparent;
+            border-radius: 7px;
+            cursor: pointer;
+            color: #cbd5e1;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .preset-btn:hover {
+            background: #475569;
+            border-color: #60a5fa;
+            color: #f1f5f9;
         }
 
         .atom-types {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .atom-type-btn {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 12px;
+            padding: 7px 10px;
             background: #334155;
             border: 2px solid transparent;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+            font-size: 12px;
         }
 
         .atom-type-btn:hover {
@@ -121,22 +215,18 @@
 
         .atom-type-btn.active {
             border-color: #60a5fa;
-            background: #3b82f620;
+            background: #1e3a5f;
         }
 
         .atom-preview {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-        }
-
-        .atom-label {
-            font-size: 12px;
-            font-weight: 500;
+            flex-shrink: 0;
         }
 
         .control-group {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .control-group:last-child {
@@ -147,8 +237,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
-            font-size: 13px;
+            margin-bottom: 5px;
+            font-size: 12px;
             color: #cbd5e1;
         }
 
@@ -156,11 +246,12 @@
             font-weight: 600;
             color: #60a5fa;
             font-family: monospace;
+            font-size: 12px;
         }
 
         input[type="range"] {
             width: 100%;
-            height: 6px;
+            height: 5px;
             border-radius: 3px;
             background: #334155;
             outline: none;
@@ -169,9 +260,8 @@
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #60a5fa;
             cursor: pointer;
@@ -182,38 +272,28 @@
             background: #3b82f6;
         }
 
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: #60a5fa;
-        }
-
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .button-group.full {
             grid-template-columns: 1fr;
         }
 
+        .button-group.triple {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
         button {
-            padding: 10px 16px;
-            font-size: 14px;
+            padding: 9px 14px;
+            font-size: 13px;
             font-weight: 500;
             border: none;
-            border-radius: 8px;
+            border-radius: 7px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
             font-family: inherit;
         }
 
@@ -250,19 +330,33 @@
             background: #dc2626;
         }
 
+        .btn-accent {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: #7c3aed;
+        }
+
+        .btn-accent.active {
+            background: #a78bfa;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+        }
+
         .energy-display {
             background: #0f172a;
             border-radius: 8px;
-            padding: 16px;
+            padding: 12px;
             display: grid;
-            gap: 10px;
+            gap: 8px;
         }
 
         .energy-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .energy-label {
@@ -286,6 +380,68 @@
             color: #34d399;
         }
 
+        .heat-source-item {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .heat-source-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #f59e0b;
+        }
+
+        .heat-source-item .hs-label {
+            flex: 1;
+            font-size: 11px;
+            color: #cbd5e1;
+        }
+
+        .heat-source-item .hs-power {
+            width: 50px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #f1f5f9;
+            padding: 3px 6px;
+            font-size: 11px;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .heat-source-item .hs-radius {
+            width: 44px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #f1f5f9;
+            padding: 3px 6px;
+            font-size: 11px;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .btn-small {
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 5px;
+            background: #475569;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-small:hover {
+            background: #ef4444;
+        }
+
         .file-input {
             display: none;
         }
@@ -293,11 +449,11 @@
         .file-label {
             display: block;
             text-align: center;
-            padding: 10px 16px;
+            padding: 9px 14px;
             background: #475569;
-            border-radius: 8px;
+            border-radius: 7px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.2s;
         }
@@ -307,39 +463,39 @@
         }
 
         .instructions {
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.6;
-            color: #94a3b8;
+            color: #64748b;
         }
 
         .instructions ul {
-            margin-top: 8px;
-            padding-left: 16px;
+            margin-top: 6px;
+            padding-left: 14px;
         }
 
         .instructions li {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
             background: #0f172a;
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb {
             background: #475569;
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
             .container {
                 flex-direction: column;
                 height: auto;
@@ -352,17 +508,40 @@
 </head>
 <body>
     <div class="container">
-        <div class="canvas-container">
-            <canvas id="canvas" width="800" height="600"></canvas>
+        <div class="left-column">
+            <div class="canvas-container">
+                <canvas id="canvas" width="800" height="600"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">能量 & 温度曲线</span>
+                    <div class="chart-legend">
+                        <span><span class="legend-dot kinetic"></span>动能</span>
+                        <span><span class="legend-dot potential"></span>势能</span>
+                        <span><span class="legend-dot total"></span>总能量</span>
+                        <span><span class="legend-dot temp"></span>温度</span>
+                    </div>
+                </div>
+                <canvas id="chartCanvas" width="800" height="140"></canvas>
+            </div>
         </div>
         <div class="control-panel">
             <h1>分子动力学</h1>
-            <p class="subtitle">二维 L-J 势能模拟器</p>
+            <p class="subtitle">二维 L-J 势能实验台</p>
 
             <div class="section">
-                <div class="section-title">选择原子类型</div>
-                <div class="atom-types" id="atomTypes">
+                <div class="section-title">实验预设</div>
+                <div class="preset-grid">
+                    <button class="preset-btn" data-preset="gas">🌫️ 气体扩散<br><small>轻原子随机分布</small></button>
+                    <button class="preset-btn" data-preset="lattice">🔷 晶格熔化<br><small>有序晶格升温</small></button>
+                    <button class="preset-btn" data-preset="collide">💥 粒子碰撞<br><small>两团粒子对撞</small></button>
+                    <button class="preset-btn" data-preset="convection">🔥 热源对流<br><small>底部加热驱动</small></button>
                 </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">原子类型</div>
+                <div class="atom-types" id="atomTypes"></div>
             </div>
 
             <div class="section">
@@ -371,7 +550,7 @@
                     <button id="btnPlay" class="btn-primary">▶ 运行</button>
                     <button id="btnStep" class="btn-secondary">⏭ 单步</button>
                 </div>
-                <div class="button-group full" style="margin-top: 10px;">
+                <div class="button-group full" style="margin-top: 8px;">
                     <button id="btnClear" class="btn-danger">🗑 清除所有</button>
                 </div>
             </div>
@@ -383,22 +562,26 @@
                         <span>温度</span>
                         <span class="control-value"><span id="tempValue">1.00</span></span>
                     </div>
-                    <input type="range" id="temperature" min="0" max="200" step="0.1" value="100">
+                    <input type="range" id="temperature" min="0" max="500" step="0.1" value="100">
                 </div>
                 <div class="control-group">
                     <div class="control-label">
                         <span>摩擦力</span>
-                        <span class="control-value"><span id="frictionValue">0.010</span></span>
+                        <span class="control-value"><span id="frictionValue">0.000</span></span>
                     </div>
-                    <input type="range" id="friction" min="0" max="50" step="0.001" value="10">
+                    <input type="range" id="friction" min="0" max="50" step="0.001" value="0">
                 </div>
             </div>
 
             <div class="section">
-                <div class="section-title">热源</div>
-                <div class="control-group checkbox-group">
-                    <input type="checkbox" id="heatEnabled" checked>
-                    <label for="heatEnabled">启用左下角热源</label>
+                <div class="section-title">热源管理</div>
+                <div class="button-group full" style="margin-bottom: 8px;">
+                    <button id="btnHeatMode" class="btn-accent">🔥 热源模式：关</button>
+                </div>
+                <div id="heatSourceList">
+                    <div style="font-size: 11px; color: #64748b; text-align: center; padding: 8px;">
+                        点击热源模式后再点击画布添加
+                    </div>
                 </div>
             </div>
 
@@ -413,13 +596,17 @@
                         <span class="energy-label">势能 (E<sub>p</sub>):</span>
                         <span class="energy-value potential" id="potentialEnergy">0.000</span>
                     </div>
-                    <div class="energy-row" style="border-top: 1px solid #334155; padding-top: 8px; margin-top: 4px;">
+                    <div class="energy-row" style="border-top: 1px solid #334155; padding-top: 6px; margin-top: 2px;">
                         <span class="energy-label">总能量 (E):</span>
                         <span class="energy-value total" id="totalEnergy">0.000</span>
                     </div>
                     <div class="energy-row">
+                        <span class="energy-label">温度:</span>
+                        <span class="energy-value" style="color: #f472b6;" id="currentTemp">0.000</span>
+                    </div>
+                    <div class="energy-row">
                         <span class="energy-label">原子数:</span>
-                        <span class="energy-value" id="atomCount">0</span>
+                        <span class="energy-value" style="color: #94a3b8;" id="atomCount">0</span>
                     </div>
                 </div>
             </div>
@@ -437,12 +624,12 @@
                 <div class="section-title">使用说明</div>
                 <div class="instructions">
                     <ul>
-                        <li>点击画布放置原子</li>
-                        <li>拖拽绘制矢量设置初始速度</li>
-                        <li>温度调节缩放所有速度</li>
-                        <li>摩擦力使系统逐渐减速</li>
-                        <li>左下角圆形区域是热源</li>
-                        <li>离开边缘原子从对侧出现</li>
+                        <li>点击画布放置原子 | 拖拽设置速度</li>
+                        <li>热源模式：点击画布放置热源</li>
+                        <li>热源可拖拽移动，调整大小/强度</li>
+                        <li>温度调节逐步缩放所有速度</li>
+                        <li>摩擦力使系统能量逐渐耗散</li>
+                        <li>原子离开边缘从对侧重新出现</li>
                     </ul>
                 </div>
             </div>
@@ -454,6 +641,11 @@
         const ctx = canvas.getContext('2d');
         const WIDTH = canvas.width;
         const HEIGHT = canvas.height;
+
+        const chartCanvas = document.getElementById('chartCanvas');
+        const chartCtx = chartCanvas.getContext('2d');
+        const CHART_W = chartCanvas.width;
+        const CHART_H = chartCanvas.height;
 
         const atomTypes = [
             { name: '轻原子', mass: 1.0, radius: 6, color: '#3b82f6', type: 'light' },
@@ -469,60 +661,245 @@
 
         let params = {
             temperature: 1.0,
-            friction: 0.01,
+            friction: 0.0,
             dt: 0.002,
             epsilon: 5.0,
             sigma: 18,
             rc: 2.5,
         };
 
-        let heatSource = {
-            x: 120,
-            y: HEIGHT - 120,
-            radius: 80,
-            power: 0.02,
-            enabled: true,
-        };
+        let heatSources = [];
 
+        let heatMode = false;
         let isDragging = false;
         let dragStart = null;
         let dragCurrent = null;
         let hasMovedSignificantly = false;
         const DRAG_THRESHOLD = 4;
 
-        let energies = {
-            kinetic: 0,
-            potential: 0,
-            total: 0,
+        let draggingHeatSource = null;
+        let dragHSOffsetX = 0;
+        let dragHSOffsetY = 0;
+
+        let energies = { kinetic: 0, potential: 0, total: 0 };
+        let currentTemperature = 0;
+
+        const MAX_HISTORY = 500;
+        let history = {
+            kinetic: [],
+            potential: [],
+            total: [],
+            temperature: [],
         };
+        let stepCounter = 0;
+        const RECORD_EVERY = 3;
 
-        const atomTypesContainer = document.getElementById('atomTypes');
-        atomTypes.forEach((type, idx) => {
-            const btn = document.createElement('div');
-            btn.className = `atom-type-btn ${idx === 0 ? 'active' : ''}`;
-            btn.innerHTML = `
-                <div class="atom-preview" style="background: ${type.color}"></div>
-                <span class="atom-label">${type.name}</span>
-            `;
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.atom-type-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                selectedType = type;
+        function initUI() {
+            const container = document.getElementById('atomTypes');
+            atomTypes.forEach((type, idx) => {
+                const btn = document.createElement('div');
+                btn.className = `atom-type-btn ${idx === 0 ? 'active' : ''}`;
+                btn.innerHTML = `<div class="atom-preview" style="background:${type.color}"></div><span>${type.name}</span>`;
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.atom-type-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedType = type;
+                });
+                container.appendChild(btn);
             });
-            atomTypesContainer.appendChild(btn);
-        });
 
-        function getDistanceSquared(a1, a2) {
-            let dx = a1.x - a2.x;
-            let dy = a1.y - a2.y;
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyPreset(btn.dataset.preset);
+                });
+            });
 
-            if (Math.abs(dx) > WIDTH / 2) {
-                dx = dx - WIDTH * Math.sign(dx);
+            document.getElementById('btnPlay').addEventListener('click', togglePlay);
+            document.getElementById('btnStep').addEventListener('click', () => { if (!running) step(); });
+            document.getElementById('btnClear').addEventListener('click', clearAll);
+
+            document.getElementById('temperature').addEventListener('input', (e) => {
+                params.temperature = parseFloat(e.target.value) / 100;
+                document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
+            });
+
+            document.getElementById('friction').addEventListener('input', (e) => {
+                params.friction = parseFloat(e.target.value) / 1000;
+                document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
+            });
+
+            document.getElementById('btnHeatMode').addEventListener('click', toggleHeatMode);
+
+            document.getElementById('btnSave').addEventListener('click', saveState);
+            document.getElementById('fileLoad').addEventListener('change', loadState);
+        }
+
+        function toggleHeatMode() {
+            heatMode = !heatMode;
+            const btn = document.getElementById('btnHeatMode');
+            if (heatMode) {
+                btn.textContent = '🔥 热源模式：开';
+                btn.classList.add('active');
+                canvas.style.cursor = 'cell';
+            } else {
+                btn.textContent = '🔥 热源模式：关';
+                btn.classList.remove('active');
+                canvas.style.cursor = 'crosshair';
             }
-            if (Math.abs(dy) > HEIGHT / 2) {
-                dy = dy - HEIGHT * Math.sign(dy);
+        }
+
+        function togglePlay() {
+            running = !running;
+            const btn = document.getElementById('btnPlay');
+            if (running) {
+                btn.textContent = '⏸ 暂停';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                animate();
+            } else {
+                btn.textContent = '▶ 运行';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-primary');
+                if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
             }
-            return dx * dx + dy * dy;
+        }
+
+        function clearAll() {
+            atoms = [];
+            heatSources = [];
+            energies = { kinetic: 0, potential: 0, total: 0 };
+            currentTemperature = 0;
+            history = { kinetic: [], potential: [], total: [], temperature: [] };
+            stepCounter = 0;
+            refreshHeatSourceUI();
+            updateEnergyDisplay();
+            updateAtomCount();
+            drawChart();
+            render();
+        }
+
+        function applyPreset(name) {
+            clearAll();
+            heatSources = [];
+            heatMode = false;
+            document.getElementById('btnHeatMode').textContent = '🔥 热源模式：关';
+            document.getElementById('btnHeatMode').classList.remove('active');
+            canvas.style.cursor = 'crosshair';
+
+            switch (name) {
+                case 'gas':
+                    params.temperature = 2.0;
+                    params.friction = 0.0;
+                    setParamUI('temperature', 2.0, '2.00');
+                    setParamUI('friction', 0.0, '0.000');
+                    for (let i = 0; i < 60; i++) {
+                        const t = atomTypes[Math.floor(Math.random() * 2)];
+                        const x = 100 + Math.random() * (WIDTH - 200);
+                        const y = 100 + Math.random() * (HEIGHT - 200);
+                        const vx = (Math.random() - 0.5) * 3;
+                        const vy = (Math.random() - 0.5) * 3;
+                        addAtomAt(x, y, vx, vy, t);
+                    }
+                    break;
+                case 'lattice':
+                    params.temperature = 0.5;
+                    params.friction = 0.0;
+                    setParamUI('temperature', 0.5, '0.50');
+                    setParamUI('friction', 0.0, '0.000');
+                    const spacing = 26;
+                    const cols = Math.floor((WIDTH - 100) / spacing);
+                    const rows = Math.floor((HEIGHT - 100) / spacing);
+                    const ox = (WIDTH - cols * spacing) / 2 + spacing / 2;
+                    const oy = (HEIGHT - rows * spacing) / 2 + spacing / 2;
+                    for (let r = 0; r < rows; r++) {
+                        for (let c = 0; c < cols; c++) {
+                            const t = atomTypes[Math.floor(Math.random() * 2)];
+                            const x = ox + c * spacing + (r % 2 === 0 ? 0 : spacing / 2);
+                            const y = oy + r * spacing;
+                            if (x > 50 && x < WIDTH - 50 && y > 50 && y < HEIGHT - 50) {
+                                addAtomAt(x, y, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5, t);
+                            }
+                        }
+                    }
+                    break;
+                case 'collide':
+                    params.temperature = 0.5;
+                    params.friction = 0.0;
+                    setParamUI('temperature', 0.5, '0.50');
+                    setParamUI('friction', 0.0, '0.000');
+                    const cx1 = WIDTH * 0.3;
+                    const cx2 = WIDTH * 0.7;
+                    const cy = HEIGHT * 0.5;
+                    for (let i = 0; i < 25; i++) {
+                        const t = atomTypes[Math.floor(Math.random() * 2)];
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = Math.random() * 50;
+                        const x = cx1 + Math.cos(angle) * dist;
+                        const y = cy + Math.sin(angle) * dist;
+                        addAtomAt(x, y, 1.5 + Math.random(), (Math.random() - 0.5), t);
+                    }
+                    for (let i = 0; i < 25; i++) {
+                        const t = atomTypes[Math.floor(Math.random() * 2)];
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = Math.random() * 50;
+                        const x = cx2 + Math.cos(angle) * dist;
+                        const y = cy + Math.sin(angle) * dist;
+                        addAtomAt(x, y, -1.5 - Math.random(), (Math.random() - 0.5), t);
+                    }
+                    break;
+                case 'convection':
+                    params.temperature = 1.0;
+                    params.friction = 0.005;
+                    setParamUI('temperature', 1.0, '1.00');
+                    setParamUI('friction', 0.005, '0.005');
+                    heatSources = [{
+                        x: WIDTH / 2, y: HEIGHT - 30,
+                        radius: 120, power: 0.03, enabled: true,
+                    }];
+                    for (let i = 0; i < 40; i++) {
+                        const t = atomTypes[Math.floor(Math.random() * 3)];
+                        const x = 150 + Math.random() * (WIDTH - 300);
+                        const y = HEIGHT * 0.3 + Math.random() * (HEIGHT * 0.4);
+                        addAtomAt(x, y, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, t);
+                    }
+                    refreshHeatSourceUI();
+                    break;
+            }
+            updateAtomCount();
+            render();
+        }
+
+        function setParamUI(id, paramValue, display) {
+            params[id] = paramValue;
+            const sliderValue = id === 'temperature' ? Math.round(paramValue * 100) : Math.round(paramValue * 1000);
+            document.getElementById(id).value = sliderValue;
+            if (id === 'temperature') document.getElementById('tempValue').textContent = display;
+            else document.getElementById('frictionValue').textContent = display;
+        }
+
+        function addAtomAt(x, y, vx, vy, type) {
+            const overlapping = atoms.some(atom => {
+                const dx = atom.x - x;
+                const dy = atom.y - y;
+                return Math.sqrt(dx * dx + dy * dy) < atom.radius + type.radius;
+            });
+            if (!overlapping) {
+                atoms.push({
+                    x, y, vx, vy,
+                    mass: type.mass,
+                    radius: type.radius,
+                    color: type.color,
+                    type: type.type,
+                });
+                return true;
+            }
+            return false;
+        }
+
+        function addAtom(x, y, vx = 0, vy = 0) {
+            const result = addAtomAt(x, y, vx, vy, selectedType);
+            if (result) updateAtomCount();
+            return result;
         }
 
         function wrapPosition(atom) {
@@ -532,59 +909,51 @@
             else if (atom.y >= HEIGHT) atom.y -= HEIGHT;
         }
 
-        function lennardJonesForce(r) {
-            const r2 = r * r;
-            const r6 = r2 * r2 * r2;
-            const r12 = r6 * r6;
-            const s6 = params.sigma ** 6;
-            const s12 = s6 * s6;
-            const force = 24 * params.epsilon * (2 * s12 / r12 - s6 / r6) / r;
-            return force;
-        }
-
-        function lennardJonesPotential(r) {
-            const r6 = r ** 6;
-            const r12 = r6 * r6;
-            const s6 = params.sigma ** 6;
-            const s12 = s6 * s6;
-            const rc = params.rc;
-            const rc6 = rc ** 6;
-            const rc12 = rc6 * rc6;
-            const shift = 4 * params.epsilon * (s12 / rc12 - s6 / rc6);
-            return 4 * params.epsilon * (s12 / r12 - s6 / r6) - shift;
-        }
-
         function computeForcesAndPotential() {
             const forces = atoms.map(() => ({ fx: 0, fy: 0 }));
             let potential = 0;
-            const rc2 = (params.rc * params.sigma) ** 2;
+            const rc = params.rc * params.sigma;
+            const rc2 = rc * rc;
+            const s6 = params.sigma ** 6;
+            const s12 = s6 * s6;
+
+            const rc6 = rc ** 6;
+            const rc12 = rc6 * rc6;
+            const rc7 = rc6 * rc;
+            const rc13 = rc12 * rc;
+            const fShift = 24 * params.epsilon * (2 * s12 / rc13 - s6 / rc7);
+            const uShift = 4 * params.epsilon * (s12 / rc12 - s6 / rc6);
 
             for (let i = 0; i < atoms.length; i++) {
                 for (let j = i + 1; j < atoms.length; j++) {
                     let dx = atoms[i].x - atoms[j].x;
                     let dy = atoms[i].y - atoms[j].y;
-
                     if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
                     if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
 
                     const r2 = dx * dx + dy * dy;
+                    if (r2 >= rc2 || r2 <= 0) continue;
 
-                    if (r2 < rc2 && r2 > 0) {
-                        const r = Math.sqrt(r2);
-                        const f = lennardJonesForce(r);
-                        const fx = f * dx / r;
-                        const fy = f * dy / r;
+                    const r = Math.sqrt(r2);
+                    const r6 = r2 * r2 * r2;
+                    const r12 = r6 * r6;
+                    const r7 = r6 * r;
+                    const r13 = r12 * r;
 
-                        forces[i].fx += fx;
-                        forces[i].fy += fy;
-                        forces[j].fx -= fx;
-                        forces[j].fy -= fy;
+                    const fLJ = 24 * params.epsilon * (2 * s12 / r13 - s6 / r7) / r;
+                    const f = fLJ - fShift / r;
+                    const fx = f * dx;
+                    const fy = f * dy;
 
-                        potential += lennardJonesPotential(r);
-                    }
+                    forces[i].fx += fx;
+                    forces[i].fy += fy;
+                    forces[j].fx -= fx;
+                    forces[j].fy -= fy;
+
+                    const uLJ = 4 * params.epsilon * (s12 / r12 - s6 / r6);
+                    potential += uLJ - uShift - fShift * (r - rc);
                 }
             }
-
             return { forces, potential };
         }
 
@@ -595,10 +964,10 @@
                 currentTemp += atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
             }
             currentTemp /= (2 * atoms.length);
-            if (currentTemp > 0 && params.temperature > 0) {
-                const target = params.temperature;
+            currentTemperature = currentTemp;
+            if (params.temperature > 0 && currentTemp > 0) {
                 const tau = 0.02;
-                const scale = Math.sqrt(1 + (target / Math.max(currentTemp, 0.001) - 1) * tau);
+                const scale = Math.sqrt(1 + (params.temperature / Math.max(currentTemp, 0.001) - 1) * tau);
                 for (const atom of atoms) {
                     atom.vx *= scale;
                     atom.vy *= scale;
@@ -606,23 +975,27 @@
             }
         }
 
-        function applyHeatSource() {
-            if (!heatSource.enabled) return;
-            for (const atom of atoms) {
-                const dx = atom.x - heatSource.x;
-                const dy = atom.y - heatSource.y;
-                const dist2 = dx * dx + dy * dy;
-                if (dist2 < heatSource.radius * heatSource.radius) {
-                    atom.vx *= 1 + heatSource.power;
-                    atom.vy *= 1 + heatSource.power;
+        function applyAllHeatSources() {
+            for (const hs of heatSources) {
+                if (!hs.enabled) continue;
+                for (const atom of atoms) {
+                    const dx = atom.x - hs.x;
+                    const dy = atom.y - hs.y;
+                    if (dx * dx + dy * dy < hs.radius * hs.radius) {
+                        const factor = 1 + hs.power;
+                        atom.vx *= factor;
+                        atom.vy *= factor;
+                    }
                 }
             }
         }
 
         function applyFriction() {
+            if (params.friction === 0) return;
+            const f = 1 - params.friction;
             for (const atom of atoms) {
-                atom.vx *= (1 - params.friction);
-                atom.vy *= (1 - params.friction);
+                atom.vx *= f;
+                atom.vy *= f;
             }
         }
 
@@ -635,25 +1008,19 @@
             scaleTemperature();
 
             const { forces, potential } = computeForcesAndPotential();
-            let kinetic = 0;
 
             for (let i = 0; i < atoms.length; i++) {
                 const atom = atoms[i];
                 const f = forces[i];
-
                 atom.x += atom.vx * params.dt + 0.5 * (f.fx / atom.mass) * params.dt * params.dt;
                 atom.y += atom.vy * params.dt + 0.5 * (f.fy / atom.mass) * params.dt * params.dt;
-
                 atom.vx += 0.5 * (f.fx / atom.mass) * params.dt;
                 atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
-
                 wrapPosition(atom);
-
-                kinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
             }
 
             applyFriction();
-            applyHeatSource();
+            applyAllHeatSources();
 
             const { forces: forces2 } = computeForcesAndPotential();
 
@@ -664,18 +1031,26 @@
                 atom.vy += 0.5 * (f.fy / atom.mass) * params.dt;
             }
 
-            energies.kinetic = kinetic;
-            energies.potential = potential;
-
             let finalKinetic = 0;
             for (const atom of atoms) {
                 finalKinetic += 0.5 * atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
             }
+
+            const tempAfter = atoms.length > 0 ? finalKinetic / atoms.length : 0;
+            currentTemperature = tempAfter;
+
             energies.kinetic = finalKinetic;
+            energies.potential = potential;
             energies.total = finalKinetic + potential;
+
+            stepCounter++;
+            if (stepCounter % RECORD_EVERY === 0) {
+                recordHistory(finalKinetic, potential, finalKinetic + potential, tempAfter);
+            }
 
             updateEnergyDisplay();
             render();
+            if (stepCounter % RECORD_EVERY === 0) drawChart();
         }
 
         function animate() {
@@ -685,24 +1060,114 @@
             }
         }
 
+        function recordHistory(kinetic, potential, total, temp) {
+            if (history.kinetic.length >= MAX_HISTORY) {
+                history.kinetic.shift();
+                history.potential.shift();
+                history.total.shift();
+                history.temperature.shift();
+            }
+            history.kinetic.push(kinetic);
+            history.potential.push(potential);
+            history.total.push(total);
+            history.temperature.push(temp);
+        }
+
+        function drawChart() {
+            const cw = CHART_W;
+            const ch = CHART_H;
+            chartCtx.fillStyle = '#080d18';
+            chartCtx.fillRect(0, 0, cw, ch);
+
+            const padLeft = 50;
+            const padRight = 10;
+            const padTop = 8;
+            const padBottom = 20;
+            const plotW = cw - padLeft - padRight;
+            const plotH = ch - padTop - padBottom;
+
+            if (history.kinetic.length < 2) {
+                chartCtx.fillStyle = '#475569';
+                chartCtx.font = '11px Inter, sans-serif';
+                chartCtx.textAlign = 'center';
+                chartCtx.fillText('运行后显示曲线', cw / 2, ch / 2);
+                return;
+            }
+
+            const allVals = [...history.kinetic, ...history.potential, ...history.total, ...history.temperature];
+            let minVal = Math.min(...allVals);
+            let maxVal = Math.max(...allVals);
+            const range = maxVal - minVal || 1;
+            const pad = range * 0.1;
+            minVal -= pad;
+            maxVal += pad;
+
+            const toX = (i) => padLeft + (i / (history.kinetic.length - 1)) * plotW;
+            const toY = (v) => padTop + plotH - ((v - minVal) / (maxVal - minVal + 0.001)) * plotH;
+
+            chartCtx.strokeStyle = '#1e293b';
+            chartCtx.lineWidth = 1;
+            const gridLines = 4;
+            for (let i = 0; i <= gridLines; i++) {
+                const y = padTop + (plotH * i) / gridLines;
+                chartCtx.beginPath();
+                chartCtx.moveTo(padLeft, y);
+                chartCtx.lineTo(cw - padRight, y);
+                chartCtx.stroke();
+            }
+
+            chartCtx.fillStyle = '#64748b';
+            chartCtx.font = '9px monospace';
+            chartCtx.textAlign = 'right';
+            for (let i = 0; i <= gridLines; i++) {
+                const val = minVal + (range * i) / gridLines;
+                const y = padTop + plotH - (plotH * i) / gridLines;
+                chartCtx.fillText(val.toFixed(1), padLeft - 4, y + 3);
+            }
+
+            const series = [
+                { data: history.kinetic, color: '#fbbf24', lineWidth: 1.5 },
+                { data: history.potential, color: '#a78bfa', lineWidth: 1.5 },
+                { data: history.total, color: '#34d399', lineWidth: 2 },
+                { data: history.temperature, color: '#f472b6', lineWidth: 1, dash: [4, 3] },
+            ];
+
+            for (const s of series) {
+                if (s.data.length < 2) continue;
+                chartCtx.strokeStyle = s.color;
+                chartCtx.lineWidth = s.lineWidth;
+                if (s.dash) chartCtx.setLineDash(s.dash);
+                else chartCtx.setLineDash([]);
+                chartCtx.beginPath();
+                chartCtx.moveTo(toX(0), toY(s.data[0]));
+                for (let i = 1; i < s.data.length; i++) {
+                    chartCtx.lineTo(toX(i), toY(s.data[i]));
+                }
+                chartCtx.stroke();
+            }
+            chartCtx.setLineDash([]);
+        }
+
         function render() {
             ctx.fillStyle = '#0a101f';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-            if (heatSource.enabled) {
-                const gradient = ctx.createRadialGradient(
-                    heatSource.x, heatSource.y, 0,
-                    heatSource.x, heatSource.y, heatSource.radius
-                );
-                gradient.addColorStop(0, 'rgba(251, 191, 36, 0.3)');
+            for (const hs of heatSources) {
+                const alpha = hs.enabled ? 0.35 : 0.1;
+                const gradient = ctx.createRadialGradient(hs.x, hs.y, 0, hs.x, hs.y, hs.radius);
+                gradient.addColorStop(0, `rgba(251, 191, 36, ${alpha})`);
                 gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(heatSource.x, heatSource.y, heatSource.radius, 0, Math.PI * 2);
+                ctx.arc(hs.x, hs.y, hs.radius, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = 'rgba(251, 191, 36, 0.5)';
+                ctx.strokeStyle = hs.enabled ? 'rgba(251, 191, 36, 0.6)' : 'rgba(251, 191, 36, 0.2)';
                 ctx.lineWidth = 2;
                 ctx.stroke();
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
+                ctx.beginPath();
+                ctx.arc(hs.x, hs.y, 4, 0, Math.PI * 2);
+                ctx.fill();
             }
 
             for (const atom of atoms) {
@@ -710,18 +1175,27 @@
                     atom.x - atom.radius * 0.3, atom.y - atom.radius * 0.3, 0,
                     atom.x, atom.y, atom.radius
                 );
-                gradient.addColorStop(0, lightenColor(atom.color, 30));
+                gradient.addColorStop(0, lightenColor(atom.color, 35));
                 gradient.addColorStop(1, atom.color);
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
                 ctx.arc(atom.x, atom.y, atom.radius, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.strokeStyle = lightenColor(atom.color, 50);
+                ctx.strokeStyle = lightenColor(atom.color, 55);
                 ctx.lineWidth = 2;
                 ctx.stroke();
             }
 
-            if (isDragging && dragStart && dragCurrent) {
+            if (heatMode) {
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.15)';
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
+                ctx.font = '14px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('热源模式：点击画布放置热源', WIDTH / 2, 30);
+            }
+
+            if (isDragging && dragStart && dragCurrent && !heatMode && !draggingHeatSource) {
                 ctx.strokeStyle = 'rgba(148, 163, 184, 0.8)';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
@@ -730,21 +1204,13 @@
                 ctx.stroke();
 
                 const angle = Math.atan2(dragCurrent.y - dragStart.y, dragCurrent.x - dragStart.x);
-                const length = Math.sqrt(
-                    (dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2
-                );
-                const arrowLength = Math.min(10, length * 0.3);
+                const length = Math.sqrt((dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2);
+                const arrowLen = Math.min(10, length * 0.3);
                 ctx.beginPath();
                 ctx.moveTo(dragCurrent.x, dragCurrent.y);
-                ctx.lineTo(
-                    dragCurrent.x - arrowLength * Math.cos(angle - Math.PI / 6),
-                    dragCurrent.y - arrowLength * Math.sin(angle - Math.PI / 6)
-                );
+                ctx.lineTo(dragCurrent.x - arrowLen * Math.cos(angle - Math.PI / 6), dragCurrent.y - arrowLen * Math.sin(angle - Math.PI / 6));
                 ctx.moveTo(dragCurrent.x, dragCurrent.y);
-                ctx.lineTo(
-                    dragCurrent.x - arrowLength * Math.cos(angle + Math.PI / 6),
-                    dragCurrent.y - arrowLength * Math.sin(angle + Math.PI / 6)
-                );
+                ctx.lineTo(dragCurrent.x - arrowLen * Math.cos(angle + Math.PI / 6), dragCurrent.y - arrowLen * Math.sin(angle + Math.PI / 6));
                 ctx.stroke();
             }
         }
@@ -752,52 +1218,104 @@
         function lightenColor(color, percent) {
             const num = parseInt(color.replace('#', ''), 16);
             const amt = Math.round(2.55 * percent);
-            const R = (num >> 16) + amt;
-            const G = (num >> 8 & 0x00FF) + amt;
-            const B = (num & 0x0000FF) + amt;
-            return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
-                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
-                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
-        }
-
-        function addAtom(x, y, vx = 0, vy = 0) {
-            const overlapping = atoms.some(atom => {
-                const dx = atom.x - x;
-                const dy = atom.y - y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                return dist < atom.radius + selectedType.radius;
-            });
-            if (!overlapping) {
-                atoms.push({
-                    x,
-                    y,
-                    vx,
-                    vy,
-                    mass: selectedType.mass,
-                    radius: selectedType.radius,
-                    color: selectedType.color,
-                    type: selectedType.type,
-                });
-                updateAtomCount();
-                return true;
-            }
-            return false;
+            const R = Math.min(255, Math.max(0, (num >> 16) + amt));
+            const G = Math.min(255, Math.max(0, (num >> 8 & 0x00FF) + amt));
+            const B = Math.min(255, Math.max(0, (num & 0x0000FF) + amt));
+            return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
         }
 
         function updateEnergyDisplay() {
             document.getElementById('kineticEnergy').textContent = energies.kinetic.toFixed(3);
             document.getElementById('potentialEnergy').textContent = energies.potential.toFixed(3);
             document.getElementById('totalEnergy').textContent = energies.total.toFixed(3);
+            document.getElementById('currentTemp').textContent = currentTemperature.toFixed(3);
         }
 
         function updateAtomCount() {
             document.getElementById('atomCount').textContent = atoms.length;
         }
 
+        function refreshHeatSourceUI() {
+            const container = document.getElementById('heatSourceList');
+            container.innerHTML = '';
+
+            if (heatSources.length === 0) {
+                container.innerHTML = '<div style="font-size:11px;color:#64748b;text-align:center;padding:8px;">点击热源模式后再点击画布添加</div>';
+                return;
+            }
+
+            heatSources.forEach((hs, idx) => {
+                const item = document.createElement('div');
+                item.className = 'heat-source-item';
+                item.innerHTML = `
+                    <input type="checkbox" ${hs.enabled ? 'checked' : ''} data-idx="${idx}" class="hs-toggle">
+                    <span class="hs-label">热源${idx + 1}</span>
+                    <span style="color:#64748b;font-size:10px;">半径</span>
+                    <input type="number" class="hs-radius" value="${hs.radius}" data-idx="${idx}" data-field="radius" min="20" max="300">
+                    <span style="color:#64748b;font-size:10px;">强度</span>
+                    <input type="number" class="hs-power" value="${hs.power.toFixed(3)}" data-idx="${idx}" data-field="power" min="0.001" max="0.5" step="0.001">
+                    <button class="btn-small" data-idx="${idx}" data-action="delete">✕</button>
+                `;
+                container.appendChild(item);
+            });
+
+            container.querySelectorAll('.hs-toggle').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const idx = parseInt(e.target.dataset.idx);
+                    heatSources[idx].enabled = e.target.checked;
+                    render();
+                });
+            });
+            container.querySelectorAll('.hs-radius, .hs-power').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const idx = parseInt(e.target.dataset.idx);
+                    const field = e.target.dataset.field;
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val) && val > 0) {
+                        heatSources[idx][field] = val;
+                        render();
+                    }
+                });
+            });
+            container.querySelectorAll('[data-action="delete"]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(e.target.dataset.idx);
+                    heatSources.splice(idx, 1);
+                    refreshHeatSourceUI();
+                    render();
+                });
+            });
+        }
+
+        function findHeatSourceAt(x, y) {
+            for (let i = heatSources.length - 1; i >= 0; i--) {
+                const hs = heatSources[i];
+                const dx = x - hs.x;
+                const dy = y - hs.y;
+                if (dx * dx + dy * dy < 100) return i;
+            }
+            return -1;
+        }
+
         canvas.addEventListener('mousedown', (e) => {
             const rect = canvas.getBoundingClientRect();
             const x = (e.clientX - rect.left) * (WIDTH / rect.width);
             const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
+
+            if (heatMode) {
+                const hsIdx = findHeatSourceAt(x, y);
+                if (hsIdx >= 0) {
+                    draggingHeatSource = hsIdx;
+                    dragHSOffsetX = heatSources[hsIdx].x - x;
+                    dragHSOffsetY = heatSources[hsIdx].y - y;
+                } else {
+                    heatSources.push({ x, y, radius: 80, power: 0.02, enabled: true });
+                    refreshHeatSourceUI();
+                    render();
+                }
+                return;
+            }
+
             isDragging = true;
             dragStart = { x, y };
             dragCurrent = { x, y };
@@ -806,10 +1324,18 @@
         });
 
         canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (WIDTH / rect.width);
+            const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
+
+            if (draggingHeatSource !== null) {
+                heatSources[draggingHeatSource].x = x + dragHSOffsetX;
+                heatSources[draggingHeatSource].y = y + dragHSOffsetY;
+                render();
+                return;
+            }
+
             if (isDragging) {
-                const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX - rect.left) * (WIDTH / rect.width);
-                const y = (e.clientY - rect.top) * (HEIGHT / rect.height);
                 const dx = x - dragStart.x;
                 const dy = y - dragStart.y;
                 if (Math.sqrt(dx * dx + dy * dy) > DRAG_THRESHOLD) {
@@ -821,6 +1347,13 @@
         });
 
         canvas.addEventListener('mouseup', (e) => {
+            if (draggingHeatSource !== null) {
+                refreshHeatSourceUI();
+                draggingHeatSource = null;
+                render();
+                return;
+            }
+
             if (isDragging && dragStart) {
                 const rect = canvas.getBoundingClientRect();
                 const x = (e.clientX - rect.left) * (WIDTH / rect.width);
@@ -843,67 +1376,37 @@
             }
         });
 
-        document.getElementById('btnPlay').addEventListener('click', () => {
-            running = !running;
-            const btn = document.getElementById('btnPlay');
-            if (running) {
-                btn.textContent = '⏸ 暂停';
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-secondary');
-                animate();
-            } else {
-                btn.textContent = '▶ 运行';
-                btn.classList.remove('btn-secondary');
-                btn.classList.add('btn-primary');
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                }
+        canvas.addEventListener('mouseleave', () => {
+            if (draggingHeatSource !== null) {
+                refreshHeatSourceUI();
+                draggingHeatSource = null;
+            }
+            if (isDragging) {
+                isDragging = false;
+                dragStart = null;
+                dragCurrent = null;
+                hasMovedSignificantly = false;
+                render();
             }
         });
 
-        document.getElementById('btnStep').addEventListener('click', () => {
-            if (!running) {
-                step();
-            }
-        });
-
-        document.getElementById('btnClear').addEventListener('click', () => {
-            atoms = [];
-            energies.kinetic = 0;
-            energies.potential = 0;
-            energies.total = 0;
-            updateEnergyDisplay();
-            updateAtomCount();
-            render();
-        });
-
-        document.getElementById('temperature').addEventListener('input', (e) => {
-            const value = parseFloat(e.target.value) / 100;
-            params.temperature = value;
-            document.getElementById('tempValue').textContent = value.toFixed(2);
-        });
-
-        document.getElementById('friction').addEventListener('input', (e) => {
-            const value = parseFloat(e.target.value) / 1000;
-            params.friction = value;
-            document.getElementById('frictionValue').textContent = value.toFixed(3);
-        });
-
-        document.getElementById('heatEnabled').addEventListener('change', (e) => {
-            heatSource.enabled = e.target.checked;
-            render();
-        });
-
-        document.getElementById('btnSave').addEventListener('click', () => {
+        function saveState() {
             const data = {
-                version: 1,
+                version: 2,
                 atoms: atoms,
-                heatSource: heatSource,
+                heatSources: heatSources,
                 parameters: {
                     temperature: params.temperature,
                     friction: params.friction,
                     dt: params.dt,
+                    epsilon: params.epsilon,
+                    sigma: params.sigma,
+                    rc: params.rc,
                 },
+                history: history,
+                stepCounter: stepCounter,
+                energies: energies,
+                currentTemperature: currentTemperature,
             };
             const json = JSON.stringify(data, null, 2);
             const blob = new Blob([json], { type: 'application/json' });
@@ -915,41 +1418,88 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-        });
+        }
 
-        document.getElementById('fileLoad').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+        function loadStateFile(file) {
             const reader = new FileReader();
             reader.onload = (event) => {
                 try {
                     const data = JSON.parse(event.target.result);
-                    if (data.version === 1) {
-                        atoms = data.atoms || [];
-                        if (data.heatSource) {
-                            Object.assign(heatSource, data.heatSource);
-                            document.getElementById('heatEnabled').checked = heatSource.enabled;
-                        }
-                        if (data.parameters) {
-                            params.temperature = data.parameters.temperature || params.temperature;
-                            params.friction = data.parameters.friction || params.friction;
-                            document.getElementById('temperature').value = params.temperature * 100;
-                            document.getElementById('friction').value = params.friction * 1000;
-                            document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
-                            document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
-                        }
-                        updateAtomCount();
-                        render();
+                    if (data.version === 2) {
+                        restoreState(data);
+                    } else if (data.version === 1) {
+                        const upgraded = {
+                            version: 2,
+                            atoms: data.atoms || [],
+                            heatSources: data.heatSource ? [data.heatSource] : [],
+                            parameters: {
+                                temperature: data.parameters?.temperature ?? 1.0,
+                                friction: data.parameters?.friction ?? 0.0,
+                                dt: data.parameters?.dt ?? 0.002,
+                                epsilon: params.epsilon,
+                                sigma: params.sigma,
+                                rc: params.rc,
+                            },
+                            history: { kinetic: [], potential: [], total: [], temperature: [] },
+                            stepCounter: 0,
+                            energies: { kinetic: 0, potential: 0, total: 0 },
+                            currentTemperature: 0,
+                        };
+                        restoreState(upgraded);
                     }
                 } catch (err) {
                     alert('加载失败：' + err.message);
                 }
             };
             reader.readAsText(file);
-        });
+        }
 
+        function loadState(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            loadStateFile(file);
+            e.target.value = '';
+        }
+
+        function restoreState(data) {
+            atoms = data.atoms || [];
+            heatSources = data.heatSources || [];
+
+            if (data.parameters) {
+                params.temperature = data.parameters.temperature ?? 1.0;
+                params.friction = data.parameters.friction ?? 0.0;
+                params.dt = data.parameters.dt ?? 0.002;
+                params.epsilon = data.parameters.epsilon ?? 5.0;
+                params.sigma = data.parameters.sigma ?? 18;
+                params.rc = data.parameters.rc ?? 2.5;
+            }
+
+            energies = data.energies || { kinetic: 0, potential: 0, total: 0 };
+            currentTemperature = data.currentTemperature ?? 0;
+            history = data.history || { kinetic: [], potential: [], total: [], temperature: [] };
+            stepCounter = data.stepCounter ?? 0;
+
+            document.getElementById('temperature').value = Math.round(params.temperature * 100);
+            document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
+            document.getElementById('friction').value = Math.round(params.friction * 1000);
+            document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
+
+            heatMode = false;
+            document.getElementById('btnHeatMode').textContent = '🔥 热源模式：关';
+            document.getElementById('btnHeatMode').classList.remove('active');
+            canvas.style.cursor = 'crosshair';
+
+            refreshHeatSourceUI();
+            updateEnergyDisplay();
+            updateAtomCount();
+            drawChart();
+            render();
+        }
+
+        initUI();
         updateAtomCount();
         updateEnergyDisplay();
+        drawChart();
         render();
     </script>
 </body>
