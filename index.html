@@ -113,6 +113,8 @@
         #chartCanvas {
             border-radius: 4px;
             background: #080d18;
+            width: 100%;
+            height: auto;
         }
 
         .control-panel {
@@ -282,10 +284,6 @@
             grid-template-columns: 1fr;
         }
 
-        .button-group.triple {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
         button {
             padding: 9px 14px;
             font-size: 13px;
@@ -403,8 +401,8 @@
             color: #cbd5e1;
         }
 
-        .heat-source-item .hs-power {
-            width: 50px;
+        .heat-source-item .hs-power,
+        .heat-source-item .hs-radius {
             background: #1e293b;
             border: 1px solid #334155;
             border-radius: 4px;
@@ -415,16 +413,12 @@
             text-align: center;
         }
 
+        .heat-source-item .hs-power {
+            width: 50px;
+        }
+
         .heat-source-item .hs-radius {
             width: 44px;
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 4px;
-            color: #f1f5f9;
-            padding: 3px 6px;
-            font-size: 11px;
-            font-family: monospace;
-            text-align: center;
         }
 
         .btn-small {
@@ -440,6 +434,10 @@
 
         .btn-small:hover {
             background: #ef4444;
+        }
+
+        .btn-small.green:hover {
+            background: #10b981;
         }
 
         .file-input {
@@ -460,6 +458,100 @@
 
         .file-label:hover {
             background: #64748b;
+        }
+
+        .inspector-panel {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .inspector-none {
+            color: #64748b;
+            font-size: 11px;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .inspector-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+
+        .inspector-row .label {
+            color: #94a3b8;
+        }
+
+        .inspector-row .value {
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .inspector-edit {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .inspector-edit input {
+            width: 58px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #f1f5f9;
+            padding: 3px 6px;
+            font-size: 11px;
+            font-family: monospace;
+            text-align: right;
+        }
+
+        .inspector-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .obs-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 11px;
+            color: #cbd5e1;
+            cursor: pointer;
+        }
+
+        .obs-toggle input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            accent-color: #60a5fa;
+        }
+
+        .custom-preset-item {
+            background: #0f172a;
+            border-radius: 7px;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .custom-preset-item .cp-name {
+            flex: 1;
+            color: #cbd5e1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .custom-preset-item .cp-info {
+            color: #64748b;
+            font-size: 10px;
         }
 
         .instructions {
@@ -540,6 +632,16 @@
             </div>
 
             <div class="section">
+                <div class="section-title">自定义预设</div>
+                <div class="button-group full" style="margin-bottom: 8px;">
+                    <button id="btnSavePreset" class="btn-secondary">💾 保存当前为预设</button>
+                </div>
+                <div id="customPresetList">
+                    <div style="font-size: 11px; color: #64748b; text-align: center; padding: 6px;">暂无自定义预设</div>
+                </div>
+            </div>
+
+            <div class="section">
                 <div class="section-title">原子类型</div>
                 <div class="atom-types" id="atomTypes"></div>
             </div>
@@ -553,6 +655,33 @@
                 <div class="button-group full" style="margin-top: 8px;">
                     <button id="btnClear" class="btn-danger">🗑 清除所有</button>
                 </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">粒子检查器</div>
+                <div class="inspector-panel" id="inspectorPanel">
+                    <div class="inspector-none">暂停后点击画布上的原子查看详情</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">观察层</div>
+                <label class="obs-toggle">
+                    <span>速度箭头</span>
+                    <input type="checkbox" id="obsVelocity" checked>
+                </label>
+                <label class="obs-toggle">
+                    <span>受力箭头</span>
+                    <input type="checkbox" id="obsForce">
+                </label>
+                <label class="obs-toggle">
+                    <span>温度热力图</span>
+                    <input type="checkbox" id="obsHeatmap">
+                </label>
+                <label class="obs-toggle">
+                    <span>热源覆盖范围</span>
+                    <input type="checkbox" id="obsHSCover" checked>
+                </label>
             </div>
 
             <div class="section">
@@ -613,9 +742,9 @@
 
             <div class="section">
                 <div class="section-title">状态保存</div>
-                <div class="button-group">
-                    <button id="btnSave" class="btn-secondary">💾 保存</button>
-                    <label for="fileLoad" class="file-label">📂 加载</label>
+                <div class="button-group full">
+                    <button id="btnSave" class="btn-secondary">💾 保存到文件</button>
+                    <label for="fileLoad" class="file-label">📂 从文件加载</label>
                     <input type="file" id="fileLoad" class="file-input" accept=".json">
                 </div>
             </div>
@@ -627,9 +756,9 @@
                         <li>点击画布放置原子 | 拖拽设置速度</li>
                         <li>热源模式：点击画布放置热源</li>
                         <li>热源可拖拽移动，调整大小/强度</li>
+                        <li>暂停后点击原子查看/编辑粒子</li>
+                        <li>观察层可叠加箭头、热力图</li>
                         <li>温度调节逐步缩放所有速度</li>
-                        <li>摩擦力使系统能量逐渐耗散</li>
-                        <li>原子离开边缘从对侧重新出现</li>
                     </ul>
                 </div>
             </div>
@@ -669,30 +798,33 @@
         };
 
         let heatSources = [];
-
         let heatMode = false;
         let isDragging = false;
         let dragStart = null;
         let dragCurrent = null;
         let hasMovedSignificantly = false;
         const DRAG_THRESHOLD = 4;
-
         let draggingHeatSource = null;
         let dragHSOffsetX = 0;
         let dragHSOffsetY = 0;
+
+        let selectedAtomIdx = null;
+        let latestForces = [];
 
         let energies = { kinetic: 0, potential: 0, total: 0 };
         let currentTemperature = 0;
 
         const MAX_HISTORY = 500;
-        let history = {
-            kinetic: [],
-            potential: [],
-            total: [],
-            temperature: [],
-        };
+        let history = { kinetic: [], potential: [], total: [], temperature: [] };
         let stepCounter = 0;
         const RECORD_EVERY = 3;
+
+        let obsLayers = {
+            velocity: true,
+            force: false,
+            heatmap: false,
+            hsCover: true,
+        };
 
         function initUI() {
             const container = document.getElementById('atomTypes');
@@ -709,9 +841,7 @@
             });
 
             document.querySelectorAll('.preset-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    applyPreset(btn.dataset.preset);
-                });
+                btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
             });
 
             document.getElementById('btnPlay').addEventListener('click', togglePlay);
@@ -722,16 +852,34 @@
                 params.temperature = parseFloat(e.target.value) / 100;
                 document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
             });
-
             document.getElementById('friction').addEventListener('input', (e) => {
                 params.friction = parseFloat(e.target.value) / 1000;
                 document.getElementById('frictionValue').textContent = params.friction.toFixed(3);
             });
 
             document.getElementById('btnHeatMode').addEventListener('click', toggleHeatMode);
-
             document.getElementById('btnSave').addEventListener('click', saveState);
             document.getElementById('fileLoad').addEventListener('change', loadState);
+            document.getElementById('btnSavePreset').addEventListener('click', saveCustomPreset);
+
+            document.getElementById('obsVelocity').addEventListener('change', (e) => {
+                obsLayers.velocity = e.target.checked;
+                render();
+            });
+            document.getElementById('obsForce').addEventListener('change', (e) => {
+                obsLayers.force = e.target.checked;
+                render();
+            });
+            document.getElementById('obsHeatmap').addEventListener('change', (e) => {
+                obsLayers.heatmap = e.target.checked;
+                render();
+            });
+            document.getElementById('obsHSCover').addEventListener('change', (e) => {
+                obsLayers.hsCover = e.target.checked;
+                render();
+            });
+
+            refreshCustomPresetUI();
         }
 
         function toggleHeatMode() {
@@ -748,19 +896,27 @@
             }
         }
 
-        function togglePlay() {
-            running = !running;
+        function setPlayButtonState(isRunning) {
             const btn = document.getElementById('btnPlay');
-            if (running) {
+            running = isRunning;
+            if (isRunning) {
                 btn.textContent = '⏸ 暂停';
                 btn.classList.remove('btn-primary');
                 btn.classList.add('btn-secondary');
-                animate();
             } else {
                 btn.textContent = '▶ 运行';
                 btn.classList.remove('btn-secondary');
                 btn.classList.add('btn-primary');
+            }
+        }
+
+        function togglePlay() {
+            if (running) {
+                setPlayButtonState(false);
                 if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+            } else {
+                setPlayButtonState(true);
+                animate();
             }
         }
 
@@ -771,7 +927,10 @@
             currentTemperature = 0;
             history = { kinetic: [], potential: [], total: [], temperature: [] };
             stepCounter = 0;
+            selectedAtomIdx = null;
+            latestForces = [];
             refreshHeatSourceUI();
+            updateInspectorPanel();
             updateEnergyDisplay();
             updateAtomCount();
             drawChart();
@@ -834,17 +993,13 @@
                         const t = atomTypes[Math.floor(Math.random() * 2)];
                         const angle = Math.random() * Math.PI * 2;
                         const dist = Math.random() * 50;
-                        const x = cx1 + Math.cos(angle) * dist;
-                        const y = cy + Math.sin(angle) * dist;
-                        addAtomAt(x, y, 1.5 + Math.random(), (Math.random() - 0.5), t);
+                        addAtomAt(cx1 + Math.cos(angle) * dist, cy + Math.sin(angle) * dist, 1.5 + Math.random(), (Math.random() - 0.5), t);
                     }
                     for (let i = 0; i < 25; i++) {
                         const t = atomTypes[Math.floor(Math.random() * 2)];
                         const angle = Math.random() * Math.PI * 2;
                         const dist = Math.random() * 50;
-                        const x = cx2 + Math.cos(angle) * dist;
-                        const y = cy + Math.sin(angle) * dist;
-                        addAtomAt(x, y, -1.5 - Math.random(), (Math.random() - 0.5), t);
+                        addAtomAt(cx2 + Math.cos(angle) * dist, cy + Math.sin(angle) * dist, -1.5 - Math.random(), (Math.random() - 0.5), t);
                     }
                     break;
                 case 'convection':
@@ -852,15 +1007,10 @@
                     params.friction = 0.005;
                     setParamUI('temperature', 1.0, '1.00');
                     setParamUI('friction', 0.005, '0.005');
-                    heatSources = [{
-                        x: WIDTH / 2, y: HEIGHT - 30,
-                        radius: 120, power: 0.03, enabled: true,
-                    }];
+                    heatSources = [{ x: WIDTH / 2, y: HEIGHT - 30, radius: 120, power: 0.03, enabled: true }];
                     for (let i = 0; i < 40; i++) {
                         const t = atomTypes[Math.floor(Math.random() * 3)];
-                        const x = 150 + Math.random() * (WIDTH - 300);
-                        const y = HEIGHT * 0.3 + Math.random() * (HEIGHT * 0.4);
-                        addAtomAt(x, y, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, t);
+                        addAtomAt(150 + Math.random() * (WIDTH - 300), HEIGHT * 0.3 + Math.random() * (HEIGHT * 0.4), (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, t);
                     }
                     refreshHeatSourceUI();
                     break;
@@ -884,13 +1034,7 @@
                 return Math.sqrt(dx * dx + dy * dy) < atom.radius + type.radius;
             });
             if (!overlapping) {
-                atoms.push({
-                    x, y, vx, vy,
-                    mass: type.mass,
-                    radius: type.radius,
-                    color: type.color,
-                    type: type.type,
-                });
+                atoms.push({ x, y, vx, vy, mass: type.mass, radius: type.radius, color: type.color, type: type.type });
                 return true;
             }
             return false;
@@ -916,7 +1060,6 @@
             const rc2 = rc * rc;
             const s6 = params.sigma ** 6;
             const s12 = s6 * s6;
-
             const rc6 = rc ** 6;
             const rc12 = rc6 * rc6;
             const rc7 = rc6 * rc;
@@ -939,7 +1082,6 @@
                     const r12 = r6 * r6;
                     const r7 = r6 * r;
                     const r13 = r12 * r;
-
                     const fLJ = 24 * params.epsilon * (2 * s12 / r13 - s6 / r7) / r;
                     const f = fLJ - fShift / r;
                     const fx = f * dx;
@@ -955,6 +1097,121 @@
                 }
             }
             return { forces, potential };
+        }
+
+        function findAtomAt(x, y) {
+            let bestIdx = -1;
+            let bestDist = Infinity;
+            for (let i = 0; i < atoms.length; i++) {
+                const dx = atoms[i].x - x;
+                const dy = atoms[i].y - y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < atoms[i].radius + 6 && dist < bestDist) {
+                    bestDist = dist;
+                    bestIdx = i;
+                }
+            }
+            return bestIdx;
+        }
+
+        function computeAtomInteraction(idx) {
+            let totalForce = 0;
+            const rc = params.rc * params.sigma;
+            const rc2 = rc * rc;
+            const s6 = params.sigma ** 6;
+            const s12 = s6 * s6;
+            const rc6 = rc ** 6;
+            const rc12 = rc6 * rc6;
+            const rc7 = rc6 * rc;
+            const rc13 = rc12 * rc;
+            const fShift = 24 * params.epsilon * (2 * s12 / rc13 - s6 / rc7);
+
+            for (let j = 0; j < atoms.length; j++) {
+                if (j === idx) continue;
+                let dx = atoms[idx].x - atoms[j].x;
+                let dy = atoms[idx].y - atoms[j].y;
+                if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
+                if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
+                const r2 = dx * dx + dy * dy;
+                if (r2 >= rc2 || r2 <= 0) continue;
+                const r = Math.sqrt(r2);
+                const r6 = r2 * r2 * r2;
+                const r12 = r6 * r6;
+                const r7 = r6 * r;
+                const r13 = r12 * r;
+                const fLJ = 24 * params.epsilon * (2 * s12 / r13 - s6 / r7) / r;
+                totalForce += Math.abs(fLJ - fShift / r);
+            }
+            return totalForce;
+        }
+
+        function selectAtom(idx) {
+            selectedAtomIdx = idx;
+            updateInspectorPanel();
+            render();
+        }
+
+        function deselectedAtom() {
+            selectedAtomIdx = null;
+            updateInspectorPanel();
+            render();
+        }
+
+        function updateInspectorPanel() {
+            const panel = document.getElementById('inspectorPanel');
+            if (selectedAtomIdx === null || selectedAtomIdx >= atoms.length) {
+                selectedAtomIdx = null;
+                panel.innerHTML = '<div class="inspector-none">暂停后点击画布上的原子查看详情</div>';
+                return;
+            }
+            const a = atoms[selectedAtomIdx];
+            const speed = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
+            const ke = 0.5 * a.mass * speed * speed;
+            const interaction = computeAtomInteraction(selectedAtomIdx);
+            const typeName = atomTypes.find(t => t.type === a.type)?.name || a.type;
+            panel.innerHTML = `
+                <div class="inspector-row"><span class="label">类型</span><span class="value" style="color:${a.color}">${typeName}</span></div>
+                <div class="inspector-row"><span class="label">质量</span><span class="value">${a.mass.toFixed(1)}</span></div>
+                <div class="inspector-row"><span class="label">速率</span><span class="value">${speed.toFixed(3)}</span></div>
+                <div class="inspector-row"><span class="label">动能</span><span class="value" style="color:#fbbf24">${ke.toFixed(3)}</span></div>
+                <div class="inspector-row">
+                    <span class="label">Vx</span>
+                    <span class="inspector-edit">
+                        <input type="number" id="editVx" value="${a.vx.toFixed(3)}" step="0.01">
+                    </span>
+                </div>
+                <div class="inspector-row">
+                    <span class="label">Vy</span>
+                    <span class="inspector-edit">
+                        <input type="number" id="editVy" value="${a.vy.toFixed(3)}" step="0.01">
+                    </span>
+                </div>
+                <div class="inspector-row">
+                    <span class="label">相互作用强度</span>
+                    <span class="value" style="color:#a78bfa">${interaction.toFixed(3)}</span>
+                </div>
+                <div class="inspector-actions">
+                    <button class="btn-small green" id="btnApplyVel">✓ 应用速度</button>
+                    <button class="btn-small" id="btnDeleteAtom" style="background:#ef4444">✕ 删除</button>
+                </div>
+            `;
+            document.getElementById('btnApplyVel').addEventListener('click', () => {
+                const vx = parseFloat(document.getElementById('editVx').value);
+                const vy = parseFloat(document.getElementById('editVy').value);
+                if (!isNaN(vx) && !isNaN(vy) && selectedAtomIdx < atoms.length) {
+                    atoms[selectedAtomIdx].vx = vx;
+                    atoms[selectedAtomIdx].vy = vy;
+                    updateInspectorPanel();
+                    render();
+                }
+            });
+            document.getElementById('btnDeleteAtom').addEventListener('click', () => {
+                atoms.splice(selectedAtomIdx, 1);
+                selectedAtomIdx = null;
+                updateAtomCount();
+                updateInspectorPanel();
+                render();
+            });
         }
 
         function scaleTemperature() {
@@ -1008,6 +1265,7 @@
             scaleTemperature();
 
             const { forces, potential } = computeForcesAndPotential();
+            latestForces = forces;
 
             for (let i = 0; i < atoms.length; i++) {
                 const atom = atoms[i];
@@ -1023,6 +1281,7 @@
             applyAllHeatSources();
 
             const { forces: forces2 } = computeForcesAndPotential();
+            latestForces = forces2;
 
             for (let i = 0; i < atoms.length; i++) {
                 const atom = atoms[i];
@@ -1038,7 +1297,6 @@
 
             const tempAfter = atoms.length > 0 ? finalKinetic / atoms.length : 0;
             currentTemperature = tempAfter;
-
             energies.kinetic = finalKinetic;
             energies.potential = potential;
             energies.total = finalKinetic + potential;
@@ -1046,6 +1304,11 @@
             stepCounter++;
             if (stepCounter % RECORD_EVERY === 0) {
                 recordHistory(finalKinetic, potential, finalKinetic + potential, tempAfter);
+            }
+
+            if (selectedAtomIdx !== null && selectedAtomIdx >= atoms.length) {
+                selectedAtomIdx = null;
+                updateInspectorPanel();
             }
 
             updateEnergyDisplay();
@@ -1098,9 +1361,8 @@
             let minVal = Math.min(...allVals);
             let maxVal = Math.max(...allVals);
             const range = maxVal - minVal || 1;
-            const pad = range * 0.1;
-            minVal -= pad;
-            maxVal += pad;
+            minVal -= range * 0.1;
+            maxVal += range * 0.1;
 
             const toX = (i) => padLeft + (i / (history.kinetic.length - 1)) * plotW;
             const toY = (v) => padTop + plotH - ((v - minVal) / (maxVal - minVal + 0.001)) * plotH;
@@ -1136,8 +1398,7 @@
                 if (s.data.length < 2) continue;
                 chartCtx.strokeStyle = s.color;
                 chartCtx.lineWidth = s.lineWidth;
-                if (s.dash) chartCtx.setLineDash(s.dash);
-                else chartCtx.setLineDash([]);
+                chartCtx.setLineDash(s.dash || []);
                 chartCtx.beginPath();
                 chartCtx.moveTo(toX(0), toY(s.data[0]));
                 for (let i = 1; i < s.data.length; i++) {
@@ -1152,25 +1413,32 @@
             ctx.fillStyle = '#0a101f';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-            for (const hs of heatSources) {
-                const alpha = hs.enabled ? 0.35 : 0.1;
-                const gradient = ctx.createRadialGradient(hs.x, hs.y, 0, hs.x, hs.y, hs.radius);
-                gradient.addColorStop(0, `rgba(251, 191, 36, ${alpha})`);
-                gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(hs.x, hs.y, hs.radius, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.strokeStyle = hs.enabled ? 'rgba(251, 191, 36, 0.6)' : 'rgba(251, 191, 36, 0.2)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
-                ctx.beginPath();
-                ctx.arc(hs.x, hs.y, 4, 0, Math.PI * 2);
-                ctx.fill();
+            if (obsLayers.heatmap && atoms.length > 0) {
+                drawHeatmap();
             }
 
-            for (const atom of atoms) {
+            if (obsLayers.hsCover) {
+                for (const hs of heatSources) {
+                    const alpha = hs.enabled ? 0.35 : 0.1;
+                    const gradient = ctx.createRadialGradient(hs.x, hs.y, 0, hs.x, hs.y, hs.radius);
+                    gradient.addColorStop(0, `rgba(251, 191, 36, ${alpha})`);
+                    gradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(hs.x, hs.y, hs.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = hs.enabled ? 'rgba(251, 191, 36, 0.6)' : 'rgba(251, 191, 36, 0.2)';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.fillStyle = 'rgba(251, 191, 36, 0.8)';
+                    ctx.beginPath();
+                    ctx.arc(hs.x, hs.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < atoms.length; i++) {
+                const atom = atoms[i];
                 const gradient = ctx.createRadialGradient(
                     atom.x - atom.radius * 0.3, atom.y - atom.radius * 0.3, 0,
                     atom.x, atom.y, atom.radius
@@ -1184,6 +1452,60 @@
                 ctx.strokeStyle = lightenColor(atom.color, 55);
                 ctx.lineWidth = 2;
                 ctx.stroke();
+
+                if (selectedAtomIdx === i) {
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = 3;
+                    ctx.setLineDash([4, 3]);
+                    ctx.beginPath();
+                    ctx.arc(atom.x, atom.y, atom.radius + 5, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            }
+
+            if (obsLayers.force && latestForces.length === atoms.length) {
+                for (let i = 0; i < atoms.length; i++) {
+                    const atom = atoms[i];
+                    const f = latestForces[i];
+                    const fmag = Math.sqrt(f.fx * f.fx + f.fy * f.fy);
+                    if (fmag < 0.001) continue;
+                    const scale = Math.min(60, fmag * 0.5);
+                    const nx = f.fx / fmag;
+                    const ny = f.fy / fmag;
+                    const ex = atom.x + nx * scale;
+                    const ey = atom.y + ny * scale;
+                    ctx.strokeStyle = 'rgba(239, 68, 68, 0.7)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(atom.x, atom.y);
+                    ctx.lineTo(ex, ey);
+                    ctx.stroke();
+                    if (scale > 8) {
+                        drawArrowHead(ctx, atom.x, atom.y, ex, ey, 5);
+                    }
+                }
+            }
+
+            if (obsLayers.velocity) {
+                for (const atom of atoms) {
+                    const speed = Math.sqrt(atom.vx * atom.vx + atom.vy * atom.vy);
+                    if (speed < 0.01) continue;
+                    const scale = Math.min(50, speed * 5);
+                    const nx = atom.vx / speed;
+                    const ny = atom.vy / speed;
+                    const ex = atom.x + nx * scale;
+                    const ey = atom.y + ny * scale;
+                    ctx.strokeStyle = 'rgba(96, 165, 250, 0.7)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(atom.x, atom.y);
+                    ctx.lineTo(ex, ey);
+                    ctx.stroke();
+                    if (scale > 6) {
+                        drawArrowHead(ctx, atom.x, atom.y, ex, ey, 4);
+                    }
+                }
             }
 
             if (heatMode) {
@@ -1202,17 +1524,54 @@
                 ctx.moveTo(dragStart.x, dragStart.y);
                 ctx.lineTo(dragCurrent.x, dragCurrent.y);
                 ctx.stroke();
-
                 const angle = Math.atan2(dragCurrent.y - dragStart.y, dragCurrent.x - dragStart.x);
                 const length = Math.sqrt((dragCurrent.x - dragStart.x) ** 2 + (dragCurrent.y - dragStart.y) ** 2);
                 const arrowLen = Math.min(10, length * 0.3);
-                ctx.beginPath();
-                ctx.moveTo(dragCurrent.x, dragCurrent.y);
-                ctx.lineTo(dragCurrent.x - arrowLen * Math.cos(angle - Math.PI / 6), dragCurrent.y - arrowLen * Math.sin(angle - Math.PI / 6));
-                ctx.moveTo(dragCurrent.x, dragCurrent.y);
-                ctx.lineTo(dragCurrent.x - arrowLen * Math.cos(angle + Math.PI / 6), dragCurrent.y - arrowLen * Math.sin(angle + Math.PI / 6));
-                ctx.stroke();
+                drawArrowHead(ctx, dragStart.x, dragStart.y, dragCurrent.x, dragCurrent.y, arrowLen);
             }
+        }
+
+        function drawHeatmap() {
+            const gridSize = 15;
+            const cols = Math.ceil(WIDTH / gridSize);
+            const rows = Math.ceil(HEIGHT / gridSize);
+            const sigma2 = 2 * (gridSize * 1.5) ** 2;
+
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const cx = j * gridSize + gridSize / 2;
+                    const cy = i * gridSize + gridSize / 2;
+                    let tempSum = 0;
+                    for (const atom of atoms) {
+                        let dx = atom.x - cx;
+                        let dy = atom.y - cy;
+                        if (Math.abs(dx) > WIDTH / 2) dx -= WIDTH * Math.sign(dx);
+                        if (Math.abs(dy) > HEIGHT / 2) dy -= HEIGHT * Math.sign(dy);
+                        const dist2 = dx * dx + dy * dy;
+                        if (dist2 > 4000) continue;
+                        const ke = atom.mass * (atom.vx * atom.vx + atom.vy * atom.vy);
+                        tempSum += ke * Math.exp(-dist2 / sigma2);
+                    }
+                    if (tempSum < 0.01) continue;
+                    const alpha = Math.min(0.6, tempSum * 0.02);
+                    const t = Math.min(1, tempSum * 0.1);
+                    const r = Math.round(t * 255);
+                    const g = Math.round(Math.max(0, 1 - Math.abs(t - 0.5) * 2) * 200);
+                    const b = Math.round((1 - t) * 255);
+                    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+                    ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+                }
+            }
+        }
+
+        function drawArrowHead(context, fromX, fromY, toX, toY, size) {
+            const angle = Math.atan2(toY - fromY, toX - fromX);
+            context.beginPath();
+            context.moveTo(toX, toY);
+            context.lineTo(toX - size * Math.cos(angle - Math.PI / 6), toY - size * Math.sin(angle - Math.PI / 6));
+            context.moveTo(toX, toY);
+            context.lineTo(toX - size * Math.cos(angle + Math.PI / 6), toY - size * Math.sin(angle + Math.PI / 6));
+            context.stroke();
         }
 
         function lightenColor(color, percent) {
@@ -1238,18 +1597,16 @@
         function refreshHeatSourceUI() {
             const container = document.getElementById('heatSourceList');
             container.innerHTML = '';
-
             if (heatSources.length === 0) {
                 container.innerHTML = '<div style="font-size:11px;color:#64748b;text-align:center;padding:8px;">点击热源模式后再点击画布添加</div>';
                 return;
             }
-
             heatSources.forEach((hs, idx) => {
                 const item = document.createElement('div');
                 item.className = 'heat-source-item';
                 item.innerHTML = `
-                    <input type="checkbox" ${hs.enabled ? 'checked' : ''} data-idx="${idx}" class="hs-toggle">
-                    <span class="hs-label">热源${idx + 1}</span>
+                    <input type="checkbox" ${hs.enabled?'checked':''} data-idx="${idx}" class="hs-toggle">
+                    <span class="hs-label">热源${idx+1}</span>
                     <span style="color:#64748b;font-size:10px;">半径</span>
                     <input type="number" class="hs-radius" value="${hs.radius}" data-idx="${idx}" data-field="radius" min="20" max="300">
                     <span style="color:#64748b;font-size:10px;">强度</span>
@@ -1258,29 +1615,22 @@
                 `;
                 container.appendChild(item);
             });
-
             container.querySelectorAll('.hs-toggle').forEach(cb => {
                 cb.addEventListener('change', (e) => {
-                    const idx = parseInt(e.target.dataset.idx);
-                    heatSources[idx].enabled = e.target.checked;
+                    heatSources[parseInt(e.target.dataset.idx)].enabled = e.target.checked;
                     render();
                 });
             });
             container.querySelectorAll('.hs-radius, .hs-power').forEach(input => {
                 input.addEventListener('input', (e) => {
                     const idx = parseInt(e.target.dataset.idx);
-                    const field = e.target.dataset.field;
                     const val = parseFloat(e.target.value);
-                    if (!isNaN(val) && val > 0) {
-                        heatSources[idx][field] = val;
-                        render();
-                    }
+                    if (!isNaN(val) && val > 0) { heatSources[idx][e.target.dataset.field] = val; render(); }
                 });
             });
             container.querySelectorAll('[data-action="delete"]').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    const idx = parseInt(e.target.dataset.idx);
-                    heatSources.splice(idx, 1);
+                    heatSources.splice(parseInt(e.target.dataset.idx), 1);
                     refreshHeatSourceUI();
                     render();
                 });
@@ -1289,9 +1639,8 @@
 
         function findHeatSourceAt(x, y) {
             for (let i = heatSources.length - 1; i >= 0; i--) {
-                const hs = heatSources[i];
-                const dx = x - hs.x;
-                const dy = y - hs.y;
+                const dx = x - heatSources[i].x;
+                const dy = y - heatSources[i].y;
                 if (dx * dx + dy * dy < 100) return i;
             }
             return -1;
@@ -1365,7 +1714,18 @@
                     const vy = (dragCurrent.y - dragStart.y) * 0.05;
                     addAtom(dragStart.x, dragStart.y, vx, vy);
                 } else {
-                    addAtom(dragStart.x, dragStart.y, 0, 0);
+                    if (!running && !heatMode) {
+                        const atomIdx = findAtomAt(dragStart.x, dragStart.y);
+                        if (atomIdx >= 0) {
+                            selectAtom(atomIdx);
+                        } else {
+                            addAtom(dragStart.x, dragStart.y, 0, 0);
+                            deselectedAtom();
+                        }
+                    } else {
+                        addAtom(dragStart.x, dragStart.y, 0, 0);
+                        deselectedAtom();
+                    }
                 }
 
                 isDragging = false;
@@ -1392,7 +1752,8 @@
 
         function saveState() {
             const data = {
-                version: 2,
+                version: 3,
+                running: running,
                 atoms: atoms,
                 heatSources: heatSources,
                 parameters: {
@@ -1425,11 +1786,12 @@
             reader.onload = (event) => {
                 try {
                     const data = JSON.parse(event.target.result);
-                    if (data.version === 2) {
+                    if (data.version >= 2) {
                         restoreState(data);
                     } else if (data.version === 1) {
-                        const upgraded = {
-                            version: 2,
+                        restoreState({
+                            version: 3,
+                            running: false,
                             atoms: data.atoms || [],
                             heatSources: data.heatSource ? [data.heatSource] : [],
                             parameters: {
@@ -1444,8 +1806,7 @@
                             stepCounter: 0,
                             energies: { kinetic: 0, potential: 0, total: 0 },
                             currentTemperature: 0,
-                        };
-                        restoreState(upgraded);
+                        });
                     }
                 } catch (err) {
                     alert('加载失败：' + err.message);
@@ -1464,6 +1825,12 @@
         function restoreState(data) {
             atoms = data.atoms || [];
             heatSources = data.heatSources || [];
+            energies = data.energies || { kinetic: 0, potential: 0, total: 0 };
+            currentTemperature = data.currentTemperature ?? 0;
+            history = data.history || { kinetic: [], potential: [], total: [], temperature: [] };
+            stepCounter = data.stepCounter ?? 0;
+            latestForces = [];
+            selectedAtomIdx = null;
 
             if (data.parameters) {
                 params.temperature = data.parameters.temperature ?? 1.0;
@@ -1473,11 +1840,6 @@
                 params.sigma = data.parameters.sigma ?? 18;
                 params.rc = data.parameters.rc ?? 2.5;
             }
-
-            energies = data.energies || { kinetic: 0, potential: 0, total: 0 };
-            currentTemperature = data.currentTemperature ?? 0;
-            history = data.history || { kinetic: [], potential: [], total: [], temperature: [] };
-            stepCounter = data.stepCounter ?? 0;
 
             document.getElementById('temperature').value = Math.round(params.temperature * 100);
             document.getElementById('tempValue').textContent = params.temperature.toFixed(2);
@@ -1492,13 +1854,126 @@
             refreshHeatSourceUI();
             updateEnergyDisplay();
             updateAtomCount();
+            updateInspectorPanel();
             drawChart();
+
+            const wasRunning = data.running === true;
+            if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+
+            if (wasRunning) {
+                setPlayButtonState(true);
+                animate();
+            } else {
+                setPlayButtonState(false);
+            }
+
             render();
+        }
+
+        function serializeState() {
+            return {
+                version: 3,
+                running: running,
+                atoms: JSON.parse(JSON.stringify(atoms)),
+                heatSources: JSON.parse(JSON.stringify(heatSources)),
+                parameters: { ...params },
+                history: JSON.parse(JSON.stringify(history)),
+                stepCounter: stepCounter,
+                energies: { ...energies },
+                currentTemperature: currentTemperature,
+            };
+        }
+
+        function saveCustomPreset() {
+            const name = prompt('请输入预设名称：');
+            if (!name || !name.trim()) return;
+            const data = serializeState();
+            data.name = name.trim();
+            data.createdAt = Date.now();
+            const key = 'md_preset_' + name.trim();
+            try {
+                localStorage.setItem(key, JSON.stringify(data));
+                refreshCustomPresetUI();
+            } catch (e) {
+                alert('保存失败：存储空间不足，请删除旧预设后重试。');
+            }
+        }
+
+        function loadCustomPreset(key) {
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return;
+                const data = JSON.parse(raw);
+                if (data.version >= 2 && data.atoms) {
+                    restoreState(data);
+                }
+            } catch (e) {
+                alert('加载预设失败。');
+            }
+        }
+
+        function deleteCustomPreset(key) {
+            if (!confirm('确认删除此预设？')) return;
+            localStorage.removeItem(key);
+            refreshCustomPresetUI();
+        }
+
+        function refreshCustomPresetUI() {
+            const container = document.getElementById('customPresetList');
+            container.innerHTML = '';
+            const keys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (k.startsWith('md_preset_')) keys.push(k);
+            }
+            keys.sort((a, b) => {
+                try {
+                    const da = JSON.parse(localStorage.getItem(a));
+                    const db = JSON.parse(localStorage.getItem(b));
+                    return (db.createdAt || 0) - (da.createdAt || 0);
+                } catch (e) { return 0; }
+            });
+
+            if (keys.length === 0) {
+                container.innerHTML = '<div style="font-size:11px;color:#64748b;text-align:center;padding:6px;">暂无自定义预设</div>';
+                return;
+            }
+
+            keys.forEach(key => {
+                try {
+                    const data = JSON.parse(localStorage.getItem(key));
+                    const name = data.name || key.replace('md_preset_', '');
+                    const atomCount = data.atoms ? data.atoms.length : 0;
+                    const item = document.createElement('div');
+                    item.className = 'custom-preset-item';
+                    item.innerHTML = `
+                        <span class="cp-name">${escapeHtml(name)}</span>
+                        <span class="cp-info">${atomCount} 原子</span>
+                        <button class="btn-small green" data-load="${escapeHtml(key)}">加载</button>
+                        <button class="btn-small" data-del="${escapeHtml(key)}">✕</button>
+                    `;
+                    container.appendChild(item);
+                } catch (e) { /* skip corrupt entries */ }
+            });
+
+            container.querySelectorAll('[data-load]').forEach(btn => {
+                btn.addEventListener('click', () => loadCustomPreset(btn.dataset.load));
+            });
+            container.querySelectorAll('[data-del]').forEach(btn => {
+                btn.addEventListener('click', () => deleteCustomPreset(btn.dataset.del));
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
         }
 
         initUI();
         updateAtomCount();
         updateEnergyDisplay();
+        updateInspectorPanel();
         drawChart();
         render();
     </script>
